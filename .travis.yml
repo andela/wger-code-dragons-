@@ -22,7 +22,7 @@ python:
 env:
   - TEST_MOBILE=True  DB=postgresql TRAVIS_NODE_VERSION="4"
   - TEST_MOBILE=False  DB=sqlite     TRAVIS_NODE_VERSION="4"
-  - TEST_MOBILE=False DB=postgresql TRAVIS_NODE_VERSION="4"
+  - TEST_MOBILE=True DB=postgresql TRAVIS_NODE_VERSION="4"
   - TEST_MOBILE=False DB=sqlite     TRAVIS_NODE_VERSION="4"
 
 # Install the application
