@@ -95,6 +95,8 @@ class DeleteAdminNoteTestCase(WorkoutManagerDeleteTestCase):
                  'general_manager1',
                  'general_manager2')
 
+
 delete_testcase_add_methods(DeleteAdminNoteTestCase)
+
 
 
