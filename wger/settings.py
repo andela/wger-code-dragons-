@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import dj_database_url
+import psycopg2
 from wger.settings_global import *
 
 # Use 'DEBUG = True' to get more details for server errors
@@ -15,8 +16,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database.sqlite',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test_wger',
         'USER': '',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
