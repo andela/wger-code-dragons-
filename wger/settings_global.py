@@ -42,9 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    # App to add third party authentication
+    # third party social media authentication
+    'django_social_project',
     'social.apps.django_app.default',
-    'social_django',
 
 
     # Uncomment the next line to enable the admin:
