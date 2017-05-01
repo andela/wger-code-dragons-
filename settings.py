@@ -12,16 +12,16 @@ ADMINS = (
     ('Your name', 'your_email@example.com'),
 )
 MANAGERS = ADMINS
-
+# 'PASSWORD': '2d5437287d4a18797f03fd352dbb69388d73505208dc0a4a87aa4cfc28027f34'
+        #'HOST': '127.0.0.1'
+        #'PORT': '5432'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'test_wger',
         'USER': 'postgres',
-        # 'PASSWORD': '2d5437287d4a18797f03fd352dbb69388d73505208dc0a4a87aa4cfc28027f34',
-        #'HOST': '127.0.0.1',
-        #'PORT': '5432',
+        'TEST': {'CHARSET': 'UTF8'}
     }
 }
 
