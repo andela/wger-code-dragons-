@@ -44,13 +44,13 @@ PyJWT==1.5.0
 pyparsing==2.2.0
 python-dateutil==2.6.0
 python-mimeparse==1.6.0
-python-social-auth==0.3.6
+python-social-auth==0.2.1
 python3-openid==3.1.0
 pytz==2017.2
 rcssmin==1.0.6
 reportlab==3.4.0
 requests==2.13.0
-requests-oauthlib==0.8.0
+requests-oauthlib==0.3.1
 rjsmin==1.0.12
 six==1.10.0
 snowballstemmer==1.2.1
