@@ -159,6 +159,7 @@ urlpatterns += [
         name='robots'),
     url(r'^manifest\.webapp$', WebappManifestView.as_view(template_name="manifest.webapp")),
     url(r'^amazon-manifest\.webapp$', WebappManifestView.as_view(template_name="amazon-manifest.webapp")),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 
     # API
     url(r'^api/', include(v1_api.urls)),
