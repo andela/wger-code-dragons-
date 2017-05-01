@@ -45,7 +45,8 @@ MEDIA_URL = '/media/'
 
 # Allow all hosts to access the application. Change if used in production.
 ALLOWED_HOSTS = '*'
-DATABASE_URL = 'postgres://tesdpiapixtcsr:2d5437287d4a18797f03fd352dbb69388d73505208dc0a4a87aa4cfc28027f34@ec2-54-243-252-91.compute-1.amazonaws.com:5432/d6ve9b3n5kglgk'
+DATABASE_URL = 'postgresql:///postgresql'
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 # This might be a good idea if you setup memcached
 #SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
