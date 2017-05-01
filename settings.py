@@ -17,11 +17,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd6ve9b3n5kglgk',
-        'USER': 'tesdpiapixtcsr',
-        'PASSWORD': '2d5437287d4a18797f03fd352dbb69388d73505208dc0a4a87aa4cfc28027f34',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'test_wger',
+        'USER': 'postgres',
+        # 'PASSWORD': '2d5437287d4a18797f03fd352dbb69388d73505208dc0a4a87aa4cfc28027f34',
+        #'HOST': '127.0.0.1',
+        #'PORT': '5432',
     }
 }
 
