@@ -160,6 +160,10 @@ urlpatterns += [
     url(r'^manifest\.webapp$', WebappManifestView.as_view(template_name="manifest.webapp")),
     url(r'^amazon-manifest\.webapp$', WebappManifestView.as_view(template_name="amazon-manifest.webapp")),
     url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                 {'document_root': settings.MEDIA_ROOT}),
+
+
 
     # API
     url(r'^api/', include(v1_api.urls)),

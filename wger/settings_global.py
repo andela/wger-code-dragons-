@@ -26,7 +26,7 @@ For a full list of options, visit:
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import django
-django.setup()
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
@@ -45,8 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
     # third party social media authentication
-    'social.apps.django_app.default',
-    'wger',
+
 
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
@@ -91,6 +90,7 @@ INSTALLED_APPS = (
 
     # django-bower for installing bower packages
     'djangobower',
+    'social.apps.django_app.default',
 )
 
 # added list of external libraries to be installed by bower
