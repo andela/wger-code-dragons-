@@ -44,30 +44,30 @@ SOCIAL_AUTH_TWITTER_SECRET = 'dgSq3ijeKn3DWFf1OHkO6XE7IbdcsPIXGZkWBr7bfv1MhTY9z2
 # This is needed for uploaded files and images (exercise images, etc.) to be
 # properly served.
 SITE_URL = 'http://localhost:8000'
-STATICFILES_DIRS = (
-    os.path.join(SITE_ROOT, '/static/'),
-    os.path.join(SITE_ROOT, '/static/bower_components/bootstrap/dist/js/'),
-    os.path.join(SITE_ROOT, '/static/bower_components/shariff/build/')
-)
-STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(SITE_ROOT, "core", "static"),
-                    os.path.join(SITE_ROOT, "nutrition", "static"),
-                    os.path.join(SITE_ROOT, "weight", "static"),
-                    os.path.join(SITE_ROOT, "exercises", "static"),
-                    os.path.join(SITE_ROOT, "software", "static"),
-                    os.path.join(SITE_ROOT, "core/static", "bower_components")
-)
+# STATICFILES_DIRS = (
+#     os.path.join(SITE_ROOT, '/static/'),
+#     os.path.join(SITE_ROOT, '/static/bower_components/bootstrap/dist/js/'),
+#     os.path.join(SITE_ROOT, '/static/bower_components/shariff/build/')
+# )
+# STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
+# STATICFILES_DIRS = (os.path.join(SITE_ROOT, "core", "static"),
+#                     os.path.join(SITE_ROOT, "nutrition", "static"),
+#                     os.path.join(SITE_ROOT, "weight", "static"),
+#                     os.path.join(SITE_ROOT, "exercises", "static"),
+#                     os.path.join(SITE_ROOT, "software", "static"),
+#                     os.path.join(SITE_ROOT, "core/static", "bower_components")
+# )
 #  Add the Whitenoise to your Django application 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFiles Storage'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    # added BowerFinder to list of static file finders
-    'djangobower.finders.BowerFinder',
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     # added BowerFinder to list of static file finders
+#     'djangobower.finders.BowerFinder',
 
-    # Django compressor
-    'compressor.finders.CompressorFinder',
-)
+#     # Django compressor
+#     'compressor.finders.CompressorFinder',
+# )
 BOWER_COMPONENTS_ROOT = os.path.join(SITE_ROOT, "static", "bower_components")
 
 # Path to uploaded files
