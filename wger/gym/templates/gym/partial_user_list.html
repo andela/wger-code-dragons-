@@ -23,7 +23,10 @@ $(document).ready( function () {
 </tr>
 </thead>
 <tbody>
+
 {% for current_user in user_table.users %}
+    <!-- select only active users -->
+    {% if current_user.obj.is_active %}
 <tr>
     <td>
         {{current_user.obj.pk}}
@@ -49,6 +52,7 @@ $(document).ready( function () {
     </td>
     {% endif %}
 </tr>
+    {% endif %}
 {% endfor %}
 </tbody>
 </table>
