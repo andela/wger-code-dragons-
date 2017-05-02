@@ -97,7 +97,7 @@ patterns_user = [
         user.UserListView.as_view(),
         name='list'),
     # url for inactive users page
-    url(r'^inactive_list$',
+    url(r'^inactive_list',
             user.InactiveUserListView.as_view(),
             name='inactive_list'),
 
