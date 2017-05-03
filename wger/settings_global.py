@@ -25,7 +25,7 @@ For a full list of options, visit:
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import django
+
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     # django-bower for installing bower packages
     'djangobower',
     'social.apps.django_app.default',
+    
 )
 
 # added list of external libraries to be installed by bower
@@ -126,11 +127,13 @@ MIDDLEWARE_CLASSES = (
 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 
     # Django mobile
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
+    
 )
 
 AUTHENTICATION_BACKENDS = (
