@@ -62,3 +62,18 @@ target/
 # External Libraries
 wger/core/static/bower_components
 node_modules
+
+# Databases
+*.sqlite
+*.db
+
+# Django Stuff
+settings*.py
+*.log
+/CACHE
+
+*.txt
+
+# Mac Stuff
+*.DS_Store
+
