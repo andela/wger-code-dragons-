@@ -17,6 +17,8 @@ import json
 from django.core import mail
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
+from django.test import TestCase
+from tastypie.test import ResourceTestCaseMixin
 
 from wger.core.tests.base_testcase import (
     STATUS_CODES_FAIL,
@@ -511,6 +513,27 @@ class WorkoutCacheTestCase(WorkoutManagerTestCase):
         for workout_id in workout_ids:
             self.assertFalse(cache.get(cache_mapper.get_workout_canonical(workout_id)))
 
+
+class ExersiseInfo(ResourceTestCaseMixin, TestCase):
+    URL = "api/v2/exerciseinfo/"
+
+    def setUp(self):
+        super(ExersiseInfo, self).setUp()
+
+    def post(self):
+        self.assertEqual(Exercise.objects.count(), 415)
+        self.assertHttpCreated(self.api_client.post(self.URL, format='json', data=self.post_data))
+        # Verify a new one has been added.
+        self.assertEqual(Exercise.objects.count(), 416)
+
+    def test_renders_json(self):
+        response = self.client.get(self.URL, format='json')
+        self.assertValidJSONResponse(response)
+
+    def test_response(self):
+        """assert status code if response is successful"""
+        response = self.client.get(self.URL, format='json')
+        self.assertEqual(response.status_code, 200)
 
 # TODO: fix test, all registered users can upload exercises
 # class ExerciseApiTestCase(api_base_test.ApiBaseResourceTestCase):
