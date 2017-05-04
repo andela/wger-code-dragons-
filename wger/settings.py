@@ -45,7 +45,7 @@ SOCIAL_AUTH_TWITTER_SECRET = 'dgSq3ijeKn3DWFf1OHkO6XE7IbdcsPIXGZkWBr7bfv1MhTY9z2
 # properly served.
 SITE_URL = 'http://localhost:8000'
 
-LOGIN_REDIRECT_URL = '/'
+
 BOWER_COMPONENTS_ROOT = os.path.join(SITE_ROOT, "static", "bower_components")
 
 # Path to uploaded files
