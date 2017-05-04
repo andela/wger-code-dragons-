@@ -36,6 +36,7 @@ from wger.core.api.serializers import (
     WeightUnitSerializer,
     UserSerializer
 )
+from wger.core.views import user
 from wger.core.api.serializers import UserprofileSerializer
 from wger.utils.permissions import UpdateOnlyPermission, WgerPermission
 
@@ -48,8 +49,10 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
             user = User.objects.create_user(username=serializer.validated_data['username'],
                                             email=serializer.validated_data['email'],
                                             password=serializer.validated_data['password'])
+            user.api_key()
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
 # class UserViewSet(viewsets.ReadOnlyModelViewSet):
 #     serializer_class = ListUserSerializer
 #     queryset = User.objects.all()

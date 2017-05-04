@@ -29,12 +29,18 @@ from wger.core.models import (
 
 class UserSerializer(serializers.ModelSerializer):
     '''
-    Add user serializer
+    Add UserApi serializer
     '''
+    groups = serializers.SlugRelatedField(many=True, read_only='true', slug_field='name')
+    user_permissions = serializers.SlugRelatedField(many=True, read_only='true', slug_field='name')
     class Meta:
-        model = User
-        fields = ('username','email','password')
-        extra_kwargs = {'password': {'write_only': True}}
+        model = ApiUser
+        read_only_fields = ('user','created_by',)
+        exclude = ('groups', 'user_permissions',)
+
+
+        # fields = ('username','email','password')
+        # extra_kwargs = {'password': {'write_only': True}}
 
 # class ListUserSerializer(serializers.ModelSerializer):
 #     '''
