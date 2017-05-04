@@ -33,6 +33,7 @@ from wger.exercises.models import (
 
 
 class ExerciseResource(ModelResource):
+
     category = fields.ToOneField('wger.exercises.api.resources.ExerciseCategoryResource',
                                  'category')
     muscles = fields.ToManyField('wger.exercises.api.resources.MuscleResource', 'muscles')
