@@ -18,14 +18,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'test_wger',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': 'Sherry_254',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'e_e^a#btn1a76r@y9@76pplm)kk8f&5zgtjkv22i-5*#_3^z0-'
+SECRET_KEY = 's2@(=rxw_=8a8$d3wvv*1edsdh1@1c$nwv6*((1h=i!s!kt)=4'
 
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''
@@ -39,7 +39,7 @@ SITE_URL = 'http://localhost:8000'
 
 # Path to uploaded files
 # Absolute filesystem path to the directory that will hold user-uploaded files.
-MEDIA_ROOT = '/Users/kjoenzau/.local/share/wger/media'
+MEDIA_ROOT = '/Users/Shera/.local/share/wger/media'
 MEDIA_URL = '/media/'
 
 # Allow all hosts to access the application. Change if used in production.
