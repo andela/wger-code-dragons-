@@ -212,8 +212,10 @@ EMAIL_SUBJECT_PREFIX = '[wger] '
 #
 # Login
 #
-LOGIN_URL = '/user/login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
 
 
 #
