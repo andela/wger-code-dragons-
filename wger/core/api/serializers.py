@@ -24,7 +24,8 @@ from wger.core.models import (
     DaysOfWeek,
     License,
     RepetitionUnit,
-    WeightUnit)
+    WeightUnit,
+    ApiUser)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -37,7 +38,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = ApiUser
         read_only_fields = ('user','created_by',)
         exclude = ('groups', 'user_permissions',)
-
 
         # fields = ('username','email','password')
         # extra_kwargs = {'password': {'write_only': True}}
