@@ -457,7 +457,9 @@
             "category": 13,
             "uuid": "605b4a25-bc1d-4604-bd93-c85b2aaf84ae",
             "muscles": [
-                2
+                2,
+                19,
+                17
             ],
             "license": 1,
             "name": "Butterfly reverse"
@@ -998,7 +1000,8 @@
             "category": 8,
             "uuid": "ff454f5a-70ee-40fb-9200-5e7e42960ef0",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Hammercurls"
@@ -1590,7 +1593,8 @@
             "category": 8,
             "uuid": "c56078d2-ae85-4524-a467-d1e143b6df1a",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Biceps curls with barbell"
@@ -2536,7 +2540,8 @@
             "category": 13,
             "uuid": "9926e18f-4e2b-4c20-9477-9bfb08d229bc",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "Shoulder press, barbell"
@@ -2578,7 +2583,8 @@
             "category": 13,
             "uuid": "1df6a1b5-7bd2-402f-9d5e-94f9ed6d8b54",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "Shoulder press, dumbbells"
@@ -2669,7 +2675,8 @@
             "uuid": "61271a8e-6a00-4898-8dc3-ea9ef913f25e",
             "muscles": [
                 2,
-                9
+                9,
+                17
             ],
             "license": 1,
             "name": "Upright row, SZ-bar"
@@ -2924,7 +2931,8 @@
             "category": 12,
             "uuid": "d46adbda-7c60-42a0-b1fd-9ec111b35956",
             "muscles": [
-                12
+                12,
+                20
             ],
             "license": 1,
             "name": "Pull ups on machine"
@@ -3032,7 +3040,8 @@
             "category": 11,
             "uuid": "754391c6-39d5-4bb6-a311-68a520f6fd3a",
             "muscles": [
-                4
+                4,
+                19
             ],
             "license": 1,
             "name": "Fly with dumbbells"
@@ -3077,7 +3086,8 @@
             "uuid": "26c72fd7-d5b9-497b-be5e-cdfe9715ddac",
             "muscles": [
                 2,
-                9
+                9,
+                17
             ],
             "license": 1,
             "name": "Upright row, on multi press"
@@ -3099,7 +3109,9 @@
             "category": 13,
             "uuid": "5345766a-c092-457a-aa21-8ee6ffa855d4",
             "muscles": [
-                2
+                2,
+                17,
+                19
             ],
             "license": 1,
             "name": "Lateral raises"
@@ -3119,7 +3131,9 @@
             "category": 13,
             "uuid": "79a3a34c-262f-4cae-b827-b5a85b11b860",
             "muscles": [
-                2
+                2,
+                17,
+                19
             ],
             "license": 1,
             "name": "Lateral raises on cable, one armed"
@@ -3183,7 +3197,8 @@
             "category": 13,
             "uuid": "7389be43-215b-4db8-8b69-75dc77004d74",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "Shoulder press, on machine"
@@ -3246,7 +3261,8 @@
             "category": 13,
             "uuid": "68d505ec-5416-4153-b228-eb1545d5c89f",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "Shoulder press, on multi press"
@@ -3268,7 +3284,8 @@
             "category": 12,
             "uuid": "079c2147-1030-4c7d-9cb5-e4f17e7768c8",
             "muscles": [
-                2
+                2,
+                20
             ],
             "license": 1,
             "name": "Chin ups"
@@ -3426,7 +3443,8 @@
             "category": 13,
             "uuid": "a0d1e216-4517-46db-ac4c-fa11686fd513",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "High pull"
@@ -3887,7 +3905,8 @@
             "category": 8,
             "uuid": "84b4e711-8b29-4541-ad58-dad967f82390",
             "muscles": [
-                13
+                13,
+                20
             ],
             "license": 1,
             "name": "Preacher Curls"
@@ -3975,7 +3994,8 @@
             "category": 10,
             "uuid": "e7fdd8fb-5e07-4a29-9d56-a005338b2e19",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Overhand Cable Curl"
@@ -4134,7 +4154,8 @@
             "category": 8,
             "uuid": "83e079a9-b61c-413b-b055-f9cf515904f1",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Single-arm preacher curl"
@@ -4308,7 +4329,8 @@
             "category": 12,
             "uuid": "42b092ec-80b1-4471-90d1-e462a65ab18c",
             "muscles": [
-                12
+                12,
+                19
             ],
             "license": 1,
             "name": "Close-grip lat pull down"
@@ -4585,7 +4607,9 @@
             "muscles_secondary": [],
             "description": "<p>Very common shoulder exercise.</p>\n<p>\u00a0</p>\n<p>As shown here:\u00a0https://www.youtube.com/watch?v=vj2w851ZHRM</p>",
             "equipment": [
-                3
+                3,
+                17,
+                19
             ],
             "creation_date": "2014-03-09",
             "category": 13,
@@ -4640,7 +4664,8 @@
             "category": 13,
             "uuid": "89e6d2ea-9a17-4a77-9a52-d5bcf39d57fd",
             "muscles": [
-                2
+                2,
+                17
             ],
             "license": 1,
             "name": "Military Press"
@@ -4731,7 +4756,8 @@
             "category": 13,
             "uuid": "a87de062-2101-4dc4-adda-328b4c722c6d",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "Front raises"
@@ -4785,7 +4811,8 @@
             "muscles_secondary": [],
             "description": "<p>Seated on a bench bWith the dumbbells on the floor bend over at 45 Degrees and then slowly raise each dumbbell to shoulder height and hold for a couple seconds before lowering to the starting position.\u00a0</p>\n<p>\u00a0</p>",
             "equipment": [
-                3
+                3,
+                19
             ],
             "creation_date": "2014-03-30",
             "category": 13,
@@ -5142,7 +5169,8 @@
             "muscles_secondary": [],
             "description": "<p>On an SZ-bar grip your hands on the outside of each bend and stand with your arms straight down, palms facing your legs.\u00a0Pull the bar (bending your arms at the elbow) to your chest, and the push the bar above your head (arms as straight as possible).\u00a0Return the bar to your chest by dropping your arms at the elbows.\u00a0Return the bar to it's origional position (stand with your arms straight down, palms facing your legs.)</p>",
             "equipment": [
-                2
+                2,
+                17
             ],
             "creation_date": "2014-06-12",
             "category": 8,
@@ -5419,7 +5447,9 @@
             "category": 13,
             "uuid": "3490d1c7-c9ce-4a08-acd3-e0bdada71c37",
             "muscles": [
-                2
+                2,
+                17,
+                19
             ],
             "license": 3,
             "name": "Snach"
@@ -5658,7 +5688,8 @@
             "muscles": [
                 1,
                 11,
-                13
+                13,
+                20
             ],
             "license": 1,
             "name": "farmers walks"
@@ -6089,7 +6120,8 @@
             "uuid": "7738fb4e-8f17-4aeb-84ef-2ee3e12eaff7",
             "muscles": [
                 1,
-                13
+                13,
+                20
             ],
             "license": 2,
             "name": "Z Curls"
@@ -6112,7 +6144,9 @@
             "uuid": "aba7ba7a-6ff0-47d4-ab66-8952e21e38c5",
             "muscles": [
                 2,
-                9
+                9,
+                17,
+                19
             ],
             "license": 2,
             "name": "Lateral-to-Front Raises"
@@ -6214,7 +6248,8 @@
             "uuid": "97d7eba2-681f-4b14-8e78-7d9b5865d336",
             "muscles": [
                 2,
-                9
+                9,
+                17
             ],
             "license": 2,
             "name": "Upright Row w/ Dumbbells"
@@ -6519,7 +6554,9 @@
             "muscles_secondary": [],
             "description": "<p>You sit at the bench press device, back slightly tilted to the back. The bar should be about 20 cm in front of you. Then you push the bar and take it back again, as you would with a bench press.</p>\n<p>In this position you strain your chest muscles a lot less, which is nice if you want to train, but your chest hasn't recovered yet.</p>\n<p>Here's a link to a girl on a machine specialized for this exercise, to give a better description than my failing words above.</p>\n<p>http://www.schnell-online.de/db_imgs/products/img/t-80400.jpg</p>",
             "equipment": [
-                8
+                8,
+                17,
+                19
             ],
             "creation_date": "2015-06-12",
             "category": 13,
@@ -6588,7 +6625,9 @@
             "category": 11,
             "uuid": "20b88059-3958-4184-9134-b48656ad868d",
             "muscles": [
-                4
+                4,
+                17,
+                19
             ],
             "license": 2,
             "name": "Isometric Wipers"
