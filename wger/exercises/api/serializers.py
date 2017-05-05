@@ -33,13 +33,21 @@ class ExerciseSerializer(serializers.ModelSerializer):
         model = Exercise
 
 
-class ExerciseInfoSerializer(serializers.ModelSerializer):
+class ExerciseImageSerializer(serializers.ModelSerializer):
     '''
-    Exercise serializer
+    ExerciseImage serializer
     '''
     class Meta:
+        model = ExerciseImage
+
+
+class ExerciseInfoSerializer(serializers.ModelSerializer):
+    '''
+    Exercise info serializer
+    '''
+
+    class Meta:
         model = Exercise
-        depth = 1
 
 
 class ExerciseSerializer(serializers.ModelSerializer):
@@ -64,14 +72,6 @@ class ExerciseCategorySerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = ExerciseCategory
-
-
-class ExerciseImageSerializer(serializers.ModelSerializer):
-    '''
-    ExerciseImage serializer
-    '''
-    class Meta:
-        model = ExerciseImage
 
 
 class ExerciseCommentSerializer(serializers.ModelSerializer):
