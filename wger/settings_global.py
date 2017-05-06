@@ -195,7 +195,7 @@ TEMPLATES = [
 #     'social_core.pipeline.social_auth.load_extra_data',
 #     'social_core.pipeline.user.user_details',
 #     'social_core.pipeline.social_auth.associate_by_email',
-)
+#)
 # TODO: Temporary fix for django 1.10 and the django-mobile app. If issue #72
 #       is closed, this can be removed.
 #       https://github.com/gregmuellegger/django-mobile/issues/72
