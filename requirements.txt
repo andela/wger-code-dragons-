@@ -20,6 +20,8 @@ django-bower
 invoke
 requests
 
+social-auth-app-django==0.1.0
+
 # REST API
 djangorestframework>=3.2,<3.3
 django-filter
