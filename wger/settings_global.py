@@ -111,7 +111,6 @@ BOWER_INSTALLED_APPS = (
     'bootstrap-social',
 )
 
-
 MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
