@@ -19,3 +19,6 @@
 from wger import get_version
 
 VERSION = get_version()
+
+# use the NutritionConfig class when loading the nutrition app
+default_app_config = 'wger.nutrition.apps.NutritionConfig'
