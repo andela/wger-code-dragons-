@@ -20,7 +20,7 @@ django-bower
 invoke
 requests
 
-social-auth-app-django==0.1.0
+social-auth-app-django
 
 # REST API
 djangorestframework>=3.2,<3.3
