@@ -24,11 +24,7 @@ class Command(BaseCommand):
             response = requests.post(settings.SITE_URL+"/user/login",{"username": options['username'], "password": options['password']})
             print(response)
             if response.status_code == 200:
-                # data = response.json()
-                # print(vars(response))
                 token = json.loads(response.content)["key"]
-
-
                 if User.objects.filter(username = options['new_username']) or User.objects.filter(email = options['new_email']):
 
                     raise CommandError("Username or email provided is already in use")
