@@ -14,6 +14,7 @@
     {% trans 'Login' as submit_text %}
     {% render_form_fields form submit_text %}
 </form>
+<<<<<<< HEAD
 <div class="col-md-offset-3 col-md-8 social-buttons">
     
       <table>
@@ -27,6 +28,18 @@
             </td></tr>
          </table>
         
+=======
+<div class="col-md-offset-3 col-md-9 social-buttons">
+        <p>
+        <!--<a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']);">
+            <span class="fa fa-facebook"></span> Sign in with Facebook-->
+       <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}"><span class="fa fa-facebook"></span>Sign in with Facebook</a>
+             
+       <a class="btn btn-block btn-social btn-google" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}"><span class="fa fa-google"></span>Sign in with Google</a>
+        
+       <a class="btn btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ request.GET.next }}"><span class="fa fa-twitter"></span>Sign in with Twitter</a>
+        </p>
+>>>>>>> cab3e014c5d11eaf30ba874a633a04075148d0e4
 </div>
 {% endblock %}
 
