@@ -55,6 +55,7 @@ def reset_workout_log(user_pk, year, month, day=None):
     cache.delete(cache_mapper.get_workout_log_list(log_hash))
 
 
+
 class CacheKeyMapper(object):
     '''
     Simple class for mapping the cache keys of different objects
@@ -67,6 +68,10 @@ class CacheKeyMapper(object):
     INGREDIENT_CACHE_KEY = 'ingredient-{0}'
     WORKOUT_CANONICAL_REPRESENTATION = 'workout-canonical-representation-{0}'
     WORKOUT_LOG_LIST = 'workout-log-hash-{0}'
+
+    # key for nutritional values
+    NUTRITIONAL_INFO = 'nutritional-info-{0}'
+
 
     def get_pk(self, param):
         '''
@@ -114,5 +119,11 @@ class CacheKeyMapper(object):
         Return the workout canonical representation
         '''
         return self.WORKOUT_LOG_LIST.format(hash_value)
+
+    def get_nutritional_info(self, param):
+        '''
+        Return nutritional information for current user 
+        '''
+        return self.NUTRITIONAL_INFO.format(self.get_pk(param))
 
 cache_mapper = CacheKeyMapper()
