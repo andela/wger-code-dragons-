@@ -17,12 +17,13 @@
 <div class="col-md-offset-4 col-md-8 social-buttons">
     
       <table>
-          <tr>
+          <tr colspan>
+              <td>&emsp;</td>
               <td>
        <a class="btn btn-block btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}">Sign In with&nbsp;<span class="fa fa-facebook"></span></a>
-             </td><td>&emsp;</td><td class="indent">
+             </td><td>&emsp;&emsp;</td><td>
        <a class="btn btn-block btn-google" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}">Sign In with&nbsp;<span class="fa fa-google"></span></a>
-            </td><td>&emsp;</td><td class="indent">
+            </td><td>&emsp;&emsp;</td><td>
        <a class="btn btn-block btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ request.GET.next }}">Sign In with&nbsp;<span class="fa fa-twitter"></span></a>
             </td></tr>
          </table>
