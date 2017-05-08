@@ -23,9 +23,9 @@ class Command(BaseCommand):
         print(user)
         if user[0]:
             client = requests.session()
-            client.get(settings.SITE_URL+"/user/login")
+            client.get(settings.SITE_URL+'/user/login')
             csrftoken = client.cookies['csrftoken']
-            response = requests.post(settings.SITE_URL+"/en/user/login",data={"username": options['username'], "password": options['password'],"csrfmiddlewaretoken": csrftoken}, headers=dict(Referer=settings.SITE_URL+"/en/user/login"))
+            response = requests.post(settings.SITE_URL+'/user/login',data={"username": options['username'], "password": options['password'],"csrfmiddlewaretoken": csrftoken})
             self.token, created = Token.objects.get_or_create(user=user[0])
             token = self.token.key
             print(token)
@@ -39,18 +39,20 @@ class Command(BaseCommand):
                     payload = {
                         "user":{
                             "username": options['new_username'],
-                            "email": options['new_email'],
-                            "password": '1234'
-                        }
+                            "password": '1234',
+                            "email": options['new_email']
+
+                        },
+                        "csrfmiddlewaretoken": csrftoken
                     }
-                    requests.post(settings.SITE_URL+'/api/v2/user/',
+                    s = requests.post(settings.SITE_URL+'/api/v2/user/',
                                                 headers={
                                                     'Authorization': 'Token '+token,
                                                     'content-type': 'application/json'
                                                 },
-                                                data=payload
+                                                data=json.dumps(payload)
                                                 )
-
+                    print(s.content)
                     return 'Successfully saved user'
             else:
                 return "Incorrect password"
