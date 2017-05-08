@@ -1,7 +1,7 @@
 import json
 import requests
 
-
+from rest_framework.authtoken.models import Token
 from django.core.urlresolvers import reverse
 from django.contrib.auth import views as auth_views, authenticate
 from django.core.management.base import BaseCommand, CommandError
@@ -20,13 +20,20 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         user = User.objects.filter(username = options['username'])
-        if user:
-            response = requests.post(settings.SITE_URL+"/user/login",{"username": options['username'], "password": options['password']})
+        print(user)
+        if user[0]:
+            client = requests.session()
+            client.get(settings.SITE_URL+"/user/login")
+            csrftoken = client.cookies['csrftoken']
+            response = requests.post(settings.SITE_URL+"/en/user/login",data={"username": options['username'], "password": options['password'],"csrfmiddlewaretoken": csrftoken}, headers=dict(Referer=settings.SITE_URL+"/en/user/login"))
+            self.token, created = Token.objects.get_or_create(user=user[0])
+            token = self.token.key
+            print(token)
             print(response)
             if response.status_code == 200:
-                token = json.loads(response.content)["key"]
+                # print(vars(response))
+                # token = json.loads(response.content)["key"]
                 if User.objects.filter(username = options['new_username']) or User.objects.filter(email = options['new_email']):
-
                     raise CommandError("Username or email provided is already in use")
                 else:
                     payload = {
@@ -43,10 +50,8 @@ class Command(BaseCommand):
                                                 },
                                                 data=payload
                                                 )
+
                     return 'Successfully saved user'
-
-
-
             else:
                 return "Incorrect password"
         else:
