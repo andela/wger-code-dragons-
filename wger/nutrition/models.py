@@ -114,7 +114,6 @@ class NutritionPlan(models.Model):
         # fetch nutritional info from cache if exists
         result = cache.get(cache_mapper.get_nutritional_info(self))
 
-
         # if not in cache fetch from db
         if not result:
             use_metric = self.user.userprofile.use_metric
@@ -163,11 +162,7 @@ class NutritionPlan(models.Model):
             # save to cache
             cache.set(cache_mapper.get_nutritional_info(self), result)
 
-
-
         return result
-
-
 
     def get_closest_weight_entry(self):
         '''
@@ -582,8 +577,6 @@ class Meal(models.Model):
         for i in nutritional_info:
             nutritional_info[i] = Decimal(nutritional_info[i]).quantize(TWOPLACES)
 
-
-
         return nutritional_info
 
 
@@ -592,7 +585,6 @@ class MealItem(models.Model):
     '''
     An item (component) of a meal
     '''
-
     meal = models.ForeignKey(Meal,
                              verbose_name=_('Nutrition plan'),
                              editable=False)
@@ -642,7 +634,6 @@ class MealItem(models.Model):
 
         :param use_metric Flag that controls the units used
         '''
-
 
         nutritional_info = {'energy': 0,
                             'protein': 0,
