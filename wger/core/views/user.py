@@ -543,14 +543,10 @@ class InactiveUserListView(LoginRequiredMixin, PermissionRequiredMixin, ListView
         '''
         Return a list with the users, not really a queryset.
         '''
-        out = {'admins': [],
-               'members': []}
+        members = [{'obj': u, 'last_log': u.usercache.last_activity} for u in
+                   User.objects.select_related('usercache', 'userprofile__gym').all()]
 
-        for u in User.objects.select_related('usercache', 'userprofile__gym').all():
-            out['members'].append({'obj': u,
-                                   'last_log': u.usercache.last_activity})
-
-        return out
+        return { 'members': members }
 
     def get_context_data(self, **kwargs):
         '''
