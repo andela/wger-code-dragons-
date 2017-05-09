@@ -6,7 +6,7 @@ from wger.settings_global import *
 # Use 'DEBUG = True' to get more details for server errors
 DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = True
-
+STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
 ADMINS = (
     ('Your name', 'your_email@example.com'),
 )
@@ -15,10 +15,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_wger',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'database.sqlite',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
