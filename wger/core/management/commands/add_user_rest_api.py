@@ -33,10 +33,7 @@ class Command(BaseCommand):
             self.token, created = Token.objects.get_or_create(user=user[0])
             token = self.token.key
             print(token)
-            # print(response)
             if response.status_code == 200:
-                # print(vars(response))
-                # token = json.loads(response.content)["key"]
                 if User.objects.filter(username=options['new_username'])\
                    or User.objects.filter(email=options['new_email']):
                     raise CommandError("Username or email provided is already in use")
@@ -52,7 +49,6 @@ class Command(BaseCommand):
                                       'Authorization': 'Token ' + token,
                                       'content-type': 'application/json'},
                                   data=json.dumps(payload))
-                    # print(s.content)
                     return 'Successfully saved user'
             else:
                 raise CommandError("Incorrect password")
