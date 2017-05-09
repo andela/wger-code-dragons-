@@ -106,6 +106,63 @@ class NutritionPlan(models.Model):
         '''
         return reverse('nutrition:plan:view', kwargs={'id': self.id})
 
+    def get_totals_for_nutrients(self, result):
+        '''
+        calculates totals 
+        '''
+        use_metric = self.user.userprofile.use_metric
+        unit = 'kg' if use_metric else 'lb'
+        # Energy
+        values = [meal.get_nutritional_values(use_metric=use_metric) for meal in self.meal_set.select_related()]
+
+        total_values = {'energy': 0,
+                        'protein': 0,
+                        'carbohydrates': 0,
+                        'carbohydrates_sugar': 0,
+                        'fat': 0,
+                        'fat_saturated': 0,
+                        'fibres': 0,
+                        'sodium': 0
+                        }
+
+        for meal in values:
+            total_values['energy'] += meal['energy']
+            total_values['protein'] += meal['protein']
+            total_values['carbohydrates'] += meal['carbohydrates']
+            total_values['carbohydrates_sugar'] += meal['carbohydrates_sugar']
+            total_values['fat'] += meal['fat']
+            total_values['fat_saturated'] += meal['fat_saturated']
+            total_values['fibres'] += meal['fibres']
+            total_values['sodium'] += meal['sodium']
+
+        for key in result['total'].keys():
+            result['total'][key] += total_values[key]
+
+        energy = result['total']['energy']
+
+        # In percent
+        if energy:
+            for key in result['percent'].keys():
+                result['percent'][key] = \
+                    result['total'][key] * ENERGY_FACTOR[key][unit] / energy * 100
+        return result
+
+    def get_nutrient_per_weight(self, result):
+        '''
+        return weight 
+        '''
+        # Per body weight
+        weight_entry = self.get_closest_weight_entry()
+        if weight_entry:
+            for key in result['per_kg'].keys():
+                result['per_kg'][key] = result['total'][key] / weight_entry.weight
+
+        # Only 2 decimal places, anything else doesn't make sense
+        for key in result.keys():
+            for i in result[key]:
+                result[key][i] = Decimal(result[key][i]).quantize(TWOPLACES)
+        return result
+
     def get_nutritional_values(self):
         '''
         Sums the nutritional info of all items in the plan
@@ -116,8 +173,7 @@ class NutritionPlan(models.Model):
 
         # if not in cache fetch from db
         if not result:
-            use_metric = self.user.userprofile.use_metric
-            unit = 'kg' if use_metric else 'lb'
+
             result = {'total': {'energy': 0,
                                 'protein': 0,
                                 'carbohydrates': 0,
@@ -134,33 +190,10 @@ class NutritionPlan(models.Model):
                                  'fat': 0},
                       }
 
-            # Energy
-            for meal in self.meal_set.select_related():
-                values = meal.get_nutritional_values(use_metric=use_metric)
-                for key in result['total'].keys():
-                    result['total'][key] += values[key]
-
-            energy = result['total']['energy']
-
-            # In percent
-            if energy:
-                for key in result['percent'].keys():
-                    result['percent'][key] = \
-                        result['total'][key] * ENERGY_FACTOR[key][unit] / energy * 100
-
-            # Per body weight
-            weight_entry = self.get_closest_weight_entry()
-            if weight_entry:
-                for key in result['per_kg'].keys():
-                    result['per_kg'][key] = result['total'][key] / weight_entry.weight
-
-            # Only 2 decimal places, anything else doesn't make sense
-            for key in result.keys():
-                for i in result[key]:
-                    result[key][i] = Decimal(result[key][i]).quantize(TWOPLACES)
+            result = self.get_totals_for_nutrients(result)
 
             # save to cache
-            cache.set(cache_mapper.get_nutritional_info(self), result)
+            cache.set(cache_mapper.get_nutritional_info(self), self.get_nutrient_per_weight(result))
 
         return result
 
