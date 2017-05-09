@@ -15,7 +15,7 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
 
-from social_core.backends import facebook
+from social_core.backends import facebook, twitter, google
 from requests.exceptions import HTTPError
 from requests.models import Response
 from rest_framework.test import APITestCase
@@ -26,11 +26,11 @@ from wger.core.tests.base_testcase import (
     WorkoutManagerAccessTestCase
 )
 
+
 def get_facebook_info_mock(self, access_token, *args, **kwargs):
     info = {
         'user_1': {
-            'id': '00001',
-            'name': 'Jonathan I. Kamau',
+            'username': 'Jonathan I. Kamau',
             'email': 'kamaujonathan@gmail.com',
         },
         # ...
@@ -48,11 +48,45 @@ class FacebookTestCase(APITestCase):
         facebook.FacebookOAuth2.user_data = get_facebook_info_mock
 
     def testFacebook(self):
-        d = {'grant_type': 'convert_token', 'client_id': 'foo', 'client_secret': 'bar', 'backend': 'facebook', 'token': 'user_1'}
-        response = self.client.post('/oauth/convert-token/', d)
-        self.assertEqual(response.status_code, 200, response.data)
+        details = {'grant_type': 'convert_token', 'client_id': '1269407003109297',
+                   'client_secret': '2658385dee664cda0f0b446b6aecd671',
+                   'backend': 'facebook', 'token': 'user_1'}
+        response = self.client.post('/oauth/convert-token/', details)
+        self.assertEqual(response.status_code, 200)
+
+
         user = User.objects.all().latest('date_joined')
         self.assertEqual(user.email, "kamaujonathan@gmail.com")
+
+def get_goog_info_mock(self, access_token, *args, **kwargs):
+    info = {
+        'user_1': {
+            'username': 'Jonathan I. Kamau',
+            'email': 'kamaujonathan@gmail.com',
+        },
+        # ...
+    }
+    try:
+        return info[access_token]
+    except KeyError:
+        response = Response()
+        response.status_code = 400
+        raise HTTPError('Error', response=response)
+
+
+class GoogleTestCase(APITestCase):
+    def setUp(self):
+        facebook.FacebookOAuth2.user_data = get_facebook_info_mock
+
+    def testgoogle(self):
+        details = {'grant_type': 'convert_token', 'client_id': '1269407003109297',
+                   'client_secret': '2658385dee664cda0f0b446b6aecd671',
+                   'backend': 'facebook', 'token': 'user_1'}
+        response = self.client.post('/oauth/convert-token/', details)
+        self.assertEqual(response.status_code, 200)
+        user = User.objects.all().latest('date_joined')
+        self.assertEqual(user.email, "kamaujonathan@gmail.com")
+
 
 class StatusUserTestCase(WorkoutManagerTestCase):
     '''
