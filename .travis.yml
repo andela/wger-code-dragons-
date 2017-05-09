@@ -60,7 +60,7 @@ script:
   # Javascript linting
   - gulp lint
 
-  # Regular application
+  # Regular application -- replaced . with wger
   - coverage run --source='wger' ./manage.py test
 
 
