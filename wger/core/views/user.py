@@ -546,7 +546,7 @@ class InactiveUserListView(LoginRequiredMixin, PermissionRequiredMixin, ListView
         members = [{'obj': u, 'last_log': u.usercache.last_activity} for u in
                    User.objects.select_related('usercache', 'userprofile__gym').all()]
 
-        return { 'members': members }
+        return {'members': members}
 
     def get_context_data(self, **kwargs):
         '''
