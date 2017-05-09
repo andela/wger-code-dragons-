@@ -108,12 +108,13 @@ class NutritionPlan(models.Model):
 
     def get_totals_for_nutrients(self, result):
         '''
-        calculates totals 
+        calculates totals
         '''
         use_metric = self.user.userprofile.use_metric
         unit = 'kg' if use_metric else 'lb'
         # Energy
-        values = [meal.get_nutritional_values(use_metric=use_metric) for meal in self.meal_set.select_related()]
+        values = [meal.get_nutritional_values(use_metric=use_metric)
+                  for meal in self.meal_set.select_related()]
 
         total_values = {'energy': 0,
                         'protein': 0,
@@ -149,7 +150,7 @@ class NutritionPlan(models.Model):
 
     def get_nutrient_per_weight(self, result):
         '''
-        return weight 
+        return weight
         '''
         # Per body weight
         weight_entry = self.get_closest_weight_entry()
