@@ -77,9 +77,11 @@ class Language(models.Model):
         '''
         return False
 
+
 class ApiUser(models.Model):
     user = models.OneToOneField(User, editable=False)
     created_by = models.ForeignKey(User, related_name="api_user_created_by")
+
 
 @python_2_unicode_compatible
 class UserProfile(models.Model):

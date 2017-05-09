@@ -49,6 +49,7 @@ from wger.core.api.serializers import (
 from wger.core.api.serializers import UserprofileSerializer
 from wger.utils.permissions import UpdateOnlyPermission, WgerPermission
 
+
 class UserViewSet(viewsets.ModelViewSet):
     '''
     API endpoint for user objects
@@ -68,6 +69,7 @@ class UserViewSet(viewsets.ModelViewSet):
         '''
         To create new user
         '''
+
         user_data = self.request.data["user"]
         print("\n\n\n response \n{}\n\n\n".format(user_data))
         user = User.objects.create_user(username=user_data["username"],

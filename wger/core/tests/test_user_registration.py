@@ -7,15 +7,16 @@ class UserRegistrationTestCase(api_base_test.ApiPostTestCase):
     object_class = User
     url = 'core:user:registration'
     data = {'username': 'felistas',
-                         'password1': 'shera',
-                         'password2': 'shera',
-                         'email': 'felistas.ngumi@andela.com'}
+            'password1': 'shera',
+            'password2': 'shera',
+            'email': 'felistas.ngumi@andela.com'}
+
 
 class ListUserTestCase(api_base_test.ApiGetTestCase):
     '''Tests listing users via the API'''
     object_class = User
     url = 'core:user:registration'
     data = {'username': 'felistas',
-                         'password1': 'shera',
-                         'password2': 'shera',
-                         'email': 'felistas.ngumi@andela.com'}
+            'password1': 'shera',
+            'password2': 'shera',
+            'email': 'felistas.ngumi@andela.com'}

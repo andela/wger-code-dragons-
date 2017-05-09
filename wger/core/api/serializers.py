@@ -32,11 +32,13 @@ class UserSerializer(serializers.ModelSerializer):
     '''
     Add UserApi serializer
     '''
+    # representing the relationship between app users and their users on wger
     groups = serializers.SlugRelatedField(many=True, read_only='true', slug_field='name')
     user_permissions = serializers.SlugRelatedField(many=True, read_only='true', slug_field='name')
+
     class Meta:
         model = ApiUser
-        read_only_fields = ('user','created_by',)
+        read_only_fields = ('user', 'created_by',)
         exclude = ('groups', 'user_permissions',)
 
         # fields = ('username','email','password')
@@ -49,6 +51,7 @@ class UserSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = User
 #         pass
+
 
 class UserprofileSerializer(serializers.ModelSerializer):
     '''

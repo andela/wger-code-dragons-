@@ -26,14 +26,17 @@ from wger.core.models import (
     License
 )
 
+
 class UserResource(ModelResource):
-    '''Create resource for user to expose to endpoints'''
-    def authorized_read_list(self,object_list,bundle):
+    '''Create resource for user'''
+    def authorized_read_list(self, object_list, bundle):
         return object_list.filter(username=bundle.request.user)
+
     class Meta:
         queryset = UserProfile.objects.all()
         authentication = ApiKeyAuthentication()
         authorization = UserObjectsOnlyAuthorization()
+
 
 class UserProfileResource(ModelResource):
     '''

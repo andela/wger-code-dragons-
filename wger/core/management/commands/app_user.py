@@ -10,6 +10,7 @@ from wger.core.models import User
 from wger.core.models import ApiUser
 from wger import settings
 
+
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('username', type=str)
@@ -17,7 +18,8 @@ class Command(BaseCommand):
         parser.add_argument('email', type=str)
 
     def handle(self, **options):
-        if User.objects.filter(username = options['username']) or User.objects.filter(email = options['email']):
+        if User.objects.filter(username=options['username'])\
+           or User.objects.filter(email=options['email']):
             raise CommandError("{} already exists".format(options['username']))
         user = User.objects.create_user(username=options["username"],
                                         password=options["password"],
