@@ -49,10 +49,4 @@ def delete_nutrition_info_from_cache(sender, **kwargs):
     else:
         primary_key = sender_instance.meal.plan.pk
 
-
     cache.delete(cache_mapper.get_nutritional_info(primary_key))
-
-
-
-
-
