@@ -334,6 +334,12 @@ section h3.section-subheading {
   padding-right: 1px;
   
 }
+.open-source-image
+{
+  padding-left: 15px;
+  padding-right: 0px;
+  padding-top: 5px;
+}
 .features-row {
   padding-bottom: 15px;
 }
@@ -352,6 +358,13 @@ section h3.section-subheading {
   padding: 0 20px 40px 5px; 
   margin-bottom: 9px;
     *margin-bottom: 99px;
+    
+}
+.height-rows3 {
+  padding: 0 20px 120px 5px; 
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+ 
     
 }
 .height-row {
