@@ -39,7 +39,7 @@ body {
   color: #204a87;
 }
 p {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.75;
 }
 p.large {
@@ -322,12 +322,42 @@ section h3.section-subheading {
 }
 @media (min-width: 768px) {
   section {
-    padding: 150px 0;
+    padding: 25px 0;
   }
 }
-.service-heading {
+.feature-heading {
   margin: 15px 0;
   text-transform: none;
+}
+.feature {
+  padding-left: 10px;
+  padding-right: 1px;
+  
+}
+.features-row {
+  padding-bottom: 15px;
+}
+.features {
+  border: solid 2px grey; 
+}
+.height-row {
+    overflow: hidden; /* cut off the stretched background */
+}
+.height-rows {
+  padding: 0 20px 20px 5px; 
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+}
+.height-rows2 {
+  padding: 0 20px 40px 5px; 
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+    
+}
+.height-row {
+    padding: 0 20px 40px 5px; 
+    margin-bottom: 9px;
+    *margin-bottom: 99px;
 }
 #portfolio .portfolio-item {
   margin: 0 0 15px;
