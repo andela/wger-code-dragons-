@@ -263,14 +263,14 @@ header {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-    height:500px;
+    height:450px;
   -o-background-size: contain;
   text-align: center;
   color: white;
 }
 
 header .intro-text {
-  padding-top: 100px;
+  padding-top: 300px;
   padding-bottom: 50px;
 }
 header .intro-text .intro-lead-in {
@@ -292,8 +292,8 @@ header .intro-text .intro-heading {
 }
 @media (min-width: 768px) {
   header .intro-text {
-    padding-top: 200px;
-    padding-bottom: 500px;
+    padding-top: 150px;
+    padding-bottom: 600px;
   }
   header .intro-text .intro-lead-in {
     /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
@@ -338,9 +338,17 @@ section h3.section-subheading {
     padding: 150px 0;
   }
 }
+.animation_delay{
+    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+    animation-delay: 2s;
+}
 .service-heading {
   margin: 15px 0;
   text-transform: none;
+}
+.features-heading {
+    margin: 15px 0;
+    text-transform: none;
 }
 .thumbnail {
     position: absolute;
@@ -350,12 +358,45 @@ section h3.section-subheading {
     padding-right:0;
     padding-left:0;
 }
+.features-row {
+  padding-bottom: 15px;
+}
+.features {
+  border: solid 2px grey;
+}
+.height-row {
+    overflow: hidden; /* cut off the stretched background */
+}
+.height-rows {
+  padding: 0 20px 20px 5px;
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+}
+.height-rows2 {
+  padding: 0 20px 40px 5px;
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
 
+}
+.height-rows3 {
+  padding: 0 20px 120px 5px;
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+
+
+}
+.height-row {
+    padding: 0 20px 40px 5px;
+    margin-bottom: 9px;
+    *margin-bottom: 99px;
+}
 .caption {
     position: absolute;
     top: 20%;
-    left: 0%;
-    width: 100%;
+    /*left: 0%;*/
+    /*width: 100%;*/
+    margin-left: auto;
+    margin-right: auto;
 }
 .section-header {
     padding: 0px;
