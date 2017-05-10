@@ -514,17 +514,17 @@ class WorkoutCacheTestCase(WorkoutManagerTestCase):
             self.assertFalse(cache.get(cache_mapper.get_workout_canonical(workout_id)))
 
 
-class ExersiseInfo(ResourceTestCaseMixin, TestCase):
+class ExerciseInfo(ResourceTestCaseMixin, TestCase):
     URL = "api/v2/exerciseinfo/"
 
     def setUp(self):
-        super(ExersiseInfo, self).setUp()
+        super(ExerciseInfo, self).setUp()
 
     def post(self):
-        self.assertEqual(Exercise.objects.count(), 415)
+        self.assertEqual(Exercise.objects.count(), 347)
         self.assertHttpCreated(self.api_client.post(self.URL, format='json', data=self.post_data))
         # Verify a new one has been added.
-        self.assertEqual(Exercise.objects.count(), 416)
+        self.assertEqual(Exercise.objects.count(), 348)
 
     def test_renders_json(self):
         response = self.client.get(self.URL, format='json')

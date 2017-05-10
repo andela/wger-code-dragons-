@@ -78,7 +78,6 @@ class ExerciseViewSet(viewsets.ModelViewSet):
         obj.set_author(self.request)
         obj.save()
 
-
 @api_view(['GET'])
 def search(request):
     '''
@@ -127,7 +126,7 @@ def search(request):
 
 class ExerciseInfoViewSet(viewsets.ModelViewSet):
     '''
-    API endpoint for exercise objects
+    API endpoint for exercise info objects
     '''
     queryset = Exercise.objects.all()
     serializer_class = ExerciseInfoSerializer

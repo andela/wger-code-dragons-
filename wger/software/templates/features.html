@@ -22,11 +22,13 @@
         <div class="container">
             <div class="intro-text">
                 <div class="intro-heading">{% trans "Welcome to wger" %}</div>
-                <div class="intro-lead-in">{% trans "Your body." %}</div>
-                <div class="intro-lead-in">{% trans "Your workouts." %}</div>
-                <div class="intro-lead-in">{% trans "Your data." %}</div>
-                <div class="intro-lead-in">{% trans "Your progress." %}</div>
-                {% if allow_guest_users and not user.is_authenticated %}
+
+                <!--<div class="intro-lead-in">{% trans "Your body." %}</div>-->
+                <!--<div class="intro-lead-in">{% trans "Your workouts." %}</div>-->
+                <!--<div class="intro-lead-in">{% trans "Your data." %}</div>-->
+                <!--<div class="intro-lead-in">{% trans "Your progress." %}</div>-->
+
+            {% if allow_guest_users and not user.is_authenticated %}
                     <a href="{% url 'core:user:demo-entries' %}" class="page-scroll btn btn-xl" rel="nofollow" style="margin-top: 1em;">
                         {% trans "Try it now" %}
                     </a>
@@ -34,9 +36,11 @@
 
                 {% if not user.is_authenticated or user.userprofile.is_temporary %}
                     {% if allow_registration %}
-                        <a href="{% url 'core:user:registration' %}" class="page-scroll btn btn-xl" style="margin-top: 1em;">
+                        <a href="{% url 'core:user:registration' %}"
+                                             class="page-scroll btn btn-xl" style="margin-top: 1em;">
                             {% trans "Register" %}
                         </a>
+
                     {% endif %}
 
                     <a href="{% url 'core:user:login' %}" class="page-scroll btn btn-xl" style="margin-top: 1em;">
@@ -46,6 +50,40 @@
             </div>
         </div>
     </header>
+<section class="section-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 text-center padding-0">
+                <img class="img-responsive" class="fadeIn" src="{% static 'images/diary-dark.png' %}" alt="">
+                <div class="caption">
+                    <h4>Diary</h4>
+                <p class="animated slideInUp">Record the weights and repetitions done for
+                    each exercise to generate
+                    diagrams that let you see your progress.  </p>
+                </div>
+            </div>
+           <div class="col-sm-4 text-center padding-0">
+                <img class="img-responsive" src="{% static 'images/workouts-dark.png' %}" alt="">
+                <div class="caption">
+                    <h4>Workout</h4>
+                <p class="animated slideInUp">Create and manage flexible workout routines for any goals you
+                    have.Select the exercises and number of repetitions, time or distance you want to do them.  Combine
+                    different workouts into a schedule.  </p>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center padding-0">
+                <img class="img-responsive" src="{% static 'images/nutrition-dark.png' %}" alt="">
+                <div class="caption">
+                    <h4>Nutrition</h4>
+                <p class="animated slideInUp" >Create your personal diet plan by creating meals with  different ingredients.
+                    The application will calculate the nutritional values (total energy, protein, carbohydrates etc .  </p>
+                </div>
+            </div>
+
+            </div>
+    </div>
+</section>
+
 
     <!-- Services Section -->
     <section id="services" class="bg-darkest-gray">

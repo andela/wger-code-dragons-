@@ -164,15 +164,15 @@ TEMPLATES = [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
-            'debug': False
+            'debug': True
         },
     },
 ]
 
-# TODO: Temporary fix for django 1.10 and the django-mobile app. If issue #72
-#       is closed, this can be removed.
-#       https://github.com/gregmuellegger/django-mobile/issues/72
-TEMPLATE_LOADERS = TEMPLATES[0]['OPTIONS']['loaders']
+# # TODO: Temporary fix for django 1.10 and the django-mobile app. If issue #72
+# #       is closed, this can be removed.
+# #       https://github.com/gregmuellegger/django-mobile/issues/72
+# TEMPLATE_LOADERS = TEMPLATES[0]['OPTIONS']['loaders']
 
 # Store the user messages in the session
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -198,8 +198,8 @@ EMAIL_SUBJECT_PREFIX = '[wger] '
 #
 # Login
 #
-LOGIN_URL = '/user/login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard'
 
 
 #
