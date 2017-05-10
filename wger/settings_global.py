@@ -44,7 +44,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    
 
 
     # Uncomment the next line to enable the admin:
@@ -92,7 +91,6 @@ INSTALLED_APPS = (
     'djangobower',
     # social authentication app for django
     'social_django',
-    
 )
 
 # added list of external libraries to be installed by bower
@@ -136,7 +134,6 @@ MIDDLEWARE_CLASSES = (
     # Django mobile
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
-    
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -165,10 +162,9 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                # social django 
+                # social django
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
-
 
                 # Django mobile
                 'django_mobile.context_processors.flavour',
@@ -344,7 +340,8 @@ STATIC_URL = '/static/'
 SOCIAL_AUTH_FACEBOOK_KEY = '1269407003109297'
 SOCIAL_AUTH_FACEBOOK_SECRET = '2658385dee664cda0f0b446b6aecd671'
 # API authentication details for google
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '283272038266-5snsealg791ohlthh79toih4753ebsvj.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('283272038266-5snsealg791ohlthh79toih4753ebsvj'
+                                 '.apps.googleusercontent.com')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'je2c-T13lEtmMOSpasqh1-M0'
 # API authentication details for twitter
 SOCIAL_AUTH_TWITTER_KEY = 'RRXsckKpSk9Tpyyw8WElcUldQ'
