@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'wger.gym',
     'wger.email',
 
+
     # reCaptcha support, see https://github.com/praekelt/django-recaptcha
     'captcha',
 
@@ -101,6 +102,7 @@ BOWER_INSTALLED_APPS = (
     'metrics-graphics',
     'devbridge-autocomplete#1.2.x',
     'sortablejs#1.4.x',
+
 )
 
 
@@ -167,6 +169,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 # Store the user messages in the session
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -357,7 +360,7 @@ IGNORABLE_404_URLS = (
     re.compile(r'^/favicon\.ico$'),
 )
 
-#
+
 # Application specific configuration options
 #
 # Consult docs/settings.rst for more information
