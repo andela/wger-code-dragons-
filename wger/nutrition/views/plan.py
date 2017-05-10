@@ -30,6 +30,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy, ugettext as _
 from django.views.generic import DeleteView, UpdateView
 
+# add import mine
+# from django.core.cache import cache
+
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, cm
 from reportlab.platypus import (
@@ -49,7 +52,6 @@ from wger.utils.generic_views import WgerFormMixin, WgerDeleteMixin
 from wger.utils.helpers import check_token, make_token
 from wger.utils.pdf import styleSheet
 from wger.utils.language import load_language
-
 
 logger = logging.getLogger(__name__)
 

@@ -33,6 +33,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 from django.conf import settings
 
+
 from wger.core.models import Language
 from wger.utils.constants import TWOPLACES
 from wger.utils.cache import cache_mapper
@@ -105,33 +106,38 @@ class NutritionPlan(models.Model):
         '''
         return reverse('nutrition:plan:view', kwargs={'id': self.id})
 
-    def get_nutritional_values(self):
+    def get_totals_for_nutrients(self, result):
         '''
-        Sums the nutritional info of all items in the plan
+        calculates totals
         '''
         use_metric = self.user.userprofile.use_metric
         unit = 'kg' if use_metric else 'lb'
-        result = {'total': {'energy': 0,
-                            'protein': 0,
-                            'carbohydrates': 0,
-                            'carbohydrates_sugar': 0,
-                            'fat': 0,
-                            'fat_saturated': 0,
-                            'fibres': 0,
-                            'sodium': 0},
-                  'percent': {'protein': 0,
-                              'carbohydrates': 0,
-                              'fat': 0},
-                  'per_kg': {'protein': 0,
-                             'carbohydrates': 0,
-                             'fat': 0},
-                  }
-
         # Energy
-        for meal in self.meal_set.select_related():
-            values = meal.get_nutritional_values(use_metric=use_metric)
-            for key in result['total'].keys():
-                result['total'][key] += values[key]
+        values = [meal.get_nutritional_values(use_metric=use_metric)
+                  for meal in self.meal_set.select_related()]
+
+        total_values = {'energy': 0,
+                        'protein': 0,
+                        'carbohydrates': 0,
+                        'carbohydrates_sugar': 0,
+                        'fat': 0,
+                        'fat_saturated': 0,
+                        'fibres': 0,
+                        'sodium': 0
+                        }
+
+        for meal in values:
+            total_values['energy'] += meal['energy']
+            total_values['protein'] += meal['protein']
+            total_values['carbohydrates'] += meal['carbohydrates']
+            total_values['carbohydrates_sugar'] += meal['carbohydrates_sugar']
+            total_values['fat'] += meal['fat']
+            total_values['fat_saturated'] += meal['fat_saturated']
+            total_values['fibres'] += meal['fibres']
+            total_values['sodium'] += meal['sodium']
+
+        for key in result['total'].keys():
+            result['total'][key] += total_values[key]
 
         energy = result['total']['energy']
 
@@ -140,7 +146,12 @@ class NutritionPlan(models.Model):
             for key in result['percent'].keys():
                 result['percent'][key] = \
                     result['total'][key] * ENERGY_FACTOR[key][unit] / energy * 100
+        return result
 
+    def get_nutrient_per_weight(self, result):
+        '''
+        return weight
+        '''
         # Per body weight
         weight_entry = self.get_closest_weight_entry()
         if weight_entry:
@@ -151,6 +162,39 @@ class NutritionPlan(models.Model):
         for key in result.keys():
             for i in result[key]:
                 result[key][i] = Decimal(result[key][i]).quantize(TWOPLACES)
+        return result
+
+    def get_nutritional_values(self):
+        '''
+        Sums the nutritional info of all items in the plan
+        '''
+
+        # fetch nutritional info from cache if exists
+        result = cache.get(cache_mapper.get_nutritional_info(self))
+
+        # if not in cache fetch from db
+        if not result:
+
+            result = {'total': {'energy': 0,
+                                'protein': 0,
+                                'carbohydrates': 0,
+                                'carbohydrates_sugar': 0,
+                                'fat': 0,
+                                'fat_saturated': 0,
+                                'fibres': 0,
+                                'sodium': 0},
+                      'percent': {'protein': 0,
+                                  'carbohydrates': 0,
+                                  'fat': 0},
+                      'per_kg': {'protein': 0,
+                                 'carbohydrates': 0,
+                                 'fat': 0},
+                      }
+
+            result = self.get_totals_for_nutrients(result)
+
+            # save to cache
+            cache.set(cache_mapper.get_nutritional_info(self), self.get_nutrient_per_weight(result))
 
         return result
 
@@ -546,6 +590,7 @@ class Meal(models.Model):
 
         :param use_metric Flag that controls the units used
         '''
+
         nutritional_info = {'energy': 0,
                             'protein': 0,
                             'carbohydrates': 0,
@@ -574,7 +619,6 @@ class MealItem(models.Model):
     '''
     An item (component) of a meal
     '''
-
     meal = models.ForeignKey(Meal,
                              verbose_name=_('Nutrition plan'),
                              editable=False)
@@ -624,6 +668,7 @@ class MealItem(models.Model):
 
         :param use_metric Flag that controls the units used
         '''
+
         nutritional_info = {'energy': 0,
                             'protein': 0,
                             'carbohydrates': 0,

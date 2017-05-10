@@ -58,8 +58,8 @@ script:
   # Javascript linting
   - gulp lint
 
-  # Regular application
-  - coverage run --source='.' ./manage.py test
+  # Regular application -- replaced . with wger
+  - coverage run --source='wger' ./manage.py test
 
 
   # Code coverage
