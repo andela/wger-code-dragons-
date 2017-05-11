@@ -38,9 +38,6 @@ from wger.core.api.serializers import (
 from wger.core.api.serializers import UserprofileSerializer
 from wger.utils.permissions import UpdateOnlyPermission, WgerPermission
 
-def fitbit(self):
-    pass
-
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     '''
