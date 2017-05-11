@@ -377,7 +377,6 @@ THUMBNAIL_ALIASES = {
 
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-=======
 STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 # API authentication details for facebook
