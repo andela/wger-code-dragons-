@@ -103,6 +103,7 @@ router.register(r'setting-weightunit', core_api_views.WeightUnitViewSet, base_na
 
 # Exercises app
 router.register(r'exercise', exercises_api_views.ExerciseViewSet, base_name='exercise')
+router.register(r'exerciseinfo', exercises_api_views.ExerciseInfoViewSet, base_name='exerciseinfo')
 router.register(r'equipment', exercises_api_views.EquipmentViewSet, base_name='api')
 router.register(r'exercisecategory', exercises_api_views.ExerciseCategoryViewSet, base_name='exercisecategory')
 router.register(r'exerciseimage', exercises_api_views.ExerciseImageViewSet, base_name='exerciseimage')
@@ -159,7 +160,7 @@ urlpatterns += [
         name='robots'),
     url(r'^manifest\.webapp$', WebappManifestView.as_view(template_name="manifest.webapp")),
     url(r'^amazon-manifest\.webapp$', WebappManifestView.as_view(template_name="amazon-manifest.webapp")),
-
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     # API
     url(r'^api/', include(v1_api.urls)),
     url(r'^api/v2/exercise/search/$',
