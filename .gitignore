@@ -66,10 +66,4 @@ target/
 # External Libraries
 wger/core/static/bower_components
 node_modules
-# DS_Store
-.DS_Store
-wger/.DS_Store
 
-database.sqlite
-wger-codedragons.herokuapp.com/
-wger/staticfiles/
