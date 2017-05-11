@@ -15,17 +15,26 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
+
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'test_wger',
         'USER': 'postgres',
         'PASSWORD': 'root',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'database.sqlite',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
 }
 
 # Make this unique, and don't share it with anybody.
+
 SECRET_KEY = '9#xtd=u@mj1i*r+wgf*drihjv@1urtav!=-iyzq4zfg1mr6oj_'
+
+SECRET_KEY = 'e_e^a#btn1a76r@y9@76pplm)kk8f&5zgtjkv22i-5*#_3^z0-'
+
 
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''

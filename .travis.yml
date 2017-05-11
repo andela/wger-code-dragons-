@@ -14,8 +14,13 @@ sudo: false
 
 # Python versions to test
 python:
+
   - "3.6"
 
+
+=======
+  - "2.7"
+  - "3.6"
 
 
 # Manually define here the combinations environment variables to test
@@ -65,3 +70,6 @@ script:
 
   # Code coverage
   - coverage report
+
+notifications:
+  slack: andela:8DbRvmOh7phvPWX0Y2CXJvWX
