@@ -292,18 +292,18 @@ header .intro-text .intro-heading {
 }
 @media (min-width: 768px) {
   header .intro-text {
-    padding-top: 150px;
+    padding-top: 100px;
     padding-bottom: 600px;
   }
   header .intro-text .intro-lead-in {
     /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
-    font-family: 'Roboto Condensed', sans-serif;
-    font-family: 'Lato', sans-serif;
-
-    font-style: normal;
-    font-size: 10px;
-    line-height: 40px;
-    margin-bottom: 25px;
+    font-family: 'Roboto';
+    /*font-family: 'Lato', sans-serif;*/
+    font-weight: 200;
+    /*font-style: ;*/
+    font-size: 23px;
+    line-height: 22px;
+    margin-bottom: 10px;
   }
   header .intro-text .intro-heading {
     /*font-family: "Open Sans Bold", Arial, Helvetica, sans-serif;*/
