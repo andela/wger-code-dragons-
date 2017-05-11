@@ -13,21 +13,21 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-DATABASES = {
-    'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test_wger',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database.sqlite',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'test_wger',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'database.sqlite',
+#         'USER': '',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '',
+#     }
+# }
 
 # Make this unique, and don't share it with anybody.
 
