@@ -505,3 +505,4 @@ class ExerciseComment(models.Model):
         Comment has no owner information
         '''
         return False
+
