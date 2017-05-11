@@ -25,6 +25,7 @@ For a full list of options, visit:
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
@@ -38,25 +39,27 @@ WSGI_APPLICATION = 'wger.wsgi.application'
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
+
+    'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
 
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 
     # Apps from wger proper
+
+    'wger.config',
     'wger.core',
-    'wger.manager',
-    'wger.weight',
+    'wger.email',
     'wger.exercises',
+    'wger.gym',
+    'wger.manager',
     'wger.nutrition',
     'wger.software',
     'wger.utils',
-    'wger.config',
-    'wger.gym',
-    'wger.email',
+    'wger.weight',
 
     # reCaptcha support, see https://github.com/praekelt/django-recaptcha
     'captcha',
@@ -86,23 +89,28 @@ INSTALLED_APPS = (
 
     # django-bower for installing bower packages
     'djangobower',
+
+    # social authentication app for django
+    'social_django',
+
 )
 
 # added list of external libraries to be installed by bower
 BOWER_INSTALLED_APPS = (
-    'jquery#2.1.x',
-    'bootstrap',
-    'd3',
-    'shariff',
-    'tinymce-dist',
-    'DataTables',
-    'components-font-awesome',
-    'tinymce',
-    'metrics-graphics',
-    'devbridge-autocomplete#1.2.x',
-    'sortablejs#1.4.x',
-)
 
+    'bootstrap',
+    'components-font-awesome',
+    'd3',
+    'DataTables',
+    'devbridge-autocomplete#1.2.x',
+    'jquery#2.1.x',
+    'metrics-graphics',
+    'shariff',
+    'sortablejs#1.4.x',
+    'tinymce',
+    'tinymce-dist',
+    'bootstrap-social',
+)
 
 MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware',
@@ -110,17 +118,20 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
 
+    # social django middleware class
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+
     # Javascript Header. Sends helper headers for AJAX
     'wger.utils.middleware.JavascriptAJAXRedirectionMiddleware',
 
     # Custom authentication middleware. Creates users on-the-fly for certain paths
     'wger.utils.middleware.WgerAuthenticationMiddleware',
-
     # Send an appropriate Header so search engines don't index pages
     'wger.utils.middleware.RobotsExclusionMiddleware',
 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
 
     # Django mobile
@@ -130,7 +141,13 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'wger.utils.helpers.EmailAuthBackend'
+
+    'wger.utils.helpers.EmailAuthBackend',
+    # authentication backends for social login
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+
 )
 
 TEMPLATES = [
@@ -150,6 +167,10 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
 
+                # social django
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
                 # Django mobile
                 'django_mobile.context_processors.flavour',
 
@@ -163,10 +184,17 @@ TEMPLATES = [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
-            'debug': False
+
+            'debug': True
+
         },
     },
 ]
+
+# TODO: Temporary fix for django 1.10 and the django-mobile app. If issue #72
+#       is closed, this can be removed.
+#       https://github.com/gregmuellegger/django-mobile/issues/72
+# TEMPLATE_LOADERS = TEMPLATES[0]['OPTIONS']['loaders']
 
 # Store the user messages in the session
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -192,9 +220,11 @@ EMAIL_SUBJECT_PREFIX = '[wger] '
 #
 # Login
 #
-LOGIN_URL = '/user/login'
-LOGIN_REDIRECT_URL = '/'
 
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
 
 #
 # Internationalization
@@ -214,17 +244,20 @@ TIME_ZONE = None
 
 # Restrict the available languages
 LANGUAGES = (
-            ('en', 'English'),
-            ('de', 'German'),
-            ('bg', 'Bulgarian'),
-            ('es', 'Spanish'),
-            ('ru', 'Russian'),
-            ('nl', 'Dutch'),
-            ('pt', 'Portuguese'),
-            ('el', 'Greek'),
-            ('cs', 'Czech'),
-            ('sv', 'Swedish'),
-            ('no', 'Norwegian'),
+
+    ('en', 'English'),
+    ('de', 'German'),
+    ('bg', 'Bulgarian'),
+    ('es', 'Spanish'),
+    ('ru', 'Russian'),
+    ('nl', 'Dutch'),
+    ('pt', 'Portuguese'),
+    ('el', 'Greek'),
+    ('cs', 'Czech'),
+    ('sv', 'Swedish'),
+    ('no', 'Norwegian'),
+    ('fr', 'French'),
+
 )
 
 # Default language code for this installation.
@@ -310,8 +343,19 @@ THUMBNAIL_ALIASES = {
 #
 # Django compressor
 #
-STATIC_ROOT = ''
+
+STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+# API authentication details for facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1269407003109297'
+SOCIAL_AUTH_FACEBOOK_SECRET = '2658385dee664cda0f0b446b6aecd671'
+# API authentication details for google
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('283272038266-5snsealg791ohlthh79toih4753ebsvj'
+                                 '.apps.googleusercontent.com')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'je2c-T13lEtmMOSpasqh1-M0'
+# API authentication details for twitter
+SOCIAL_AUTH_TWITTER_KEY = 'RRXsckKpSk9Tpyyw8WElcUldQ'
+SOCIAL_AUTH_TWITTER_SECRET = 'dgSq3ijeKn3DWFf1OHkO6XE7IbdcsPIXGZkWBr7bfv1MhTY9z2'
 
 # The default is not DEBUG, override if needed
 # COMPRESS_ENABLED = True
@@ -358,6 +402,26 @@ IGNORABLE_404_URLS = (
 )
 
 #
+
+# Password rules
+#
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+#
+
 # Application specific configuration options
 #
 # Consult docs/settings.rst for more information

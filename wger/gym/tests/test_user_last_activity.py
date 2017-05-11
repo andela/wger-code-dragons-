@@ -35,7 +35,7 @@ class UserLastActivityTestCase(WorkoutManagerTestCase):
         log = WorkoutLog.objects.get(pk=1)
         session = WorkoutSession.objects.get(pk=1)
 
-        self.assertEqual(user.usercache.last_activity, datetime.date(2014, 1, 30))
+        self.assertEqual(user.usercache.last_activity, datetime.date(2014, 1, 20))
         self.assertEqual(get_user_last_activity(user), datetime.date(2014, 1, 30))
 
         # Log more recent than session

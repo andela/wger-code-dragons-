@@ -45,3 +45,17 @@ Sphinx==1.5.5
 sqlparse==0.2.3
 webencodings==0.5.1
 
+# Requirements for wger for production
+#
+
+
+social-auth-app-django==0.1.0
+social-auth-core==0.2.1
+
+# REST API
+
+
+
+# Python3 compatibility
+six
+

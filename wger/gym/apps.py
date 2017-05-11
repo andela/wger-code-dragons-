@@ -21,5 +21,5 @@ class GymConfig(AppConfig):
     name = 'wger.gym'
     verbose_name = "Gym"
 
-    def ready(self):
-        import wger.gym.signals
+    # def ready(self):
+    #     import wger.gym.signals
