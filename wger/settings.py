@@ -22,12 +22,12 @@ DATABASES = {
         'PORT': '',
     }
 }
+
 # Make this unique, and don't share it with anybody.
 
 SECRET_KEY = '9#xtd=u@mj1i*r+wgf*drihjv@1urtav!=-iyzq4zfg1mr6oj_'
 
 SECRET_KEY = 'e_e^a#btn1a76r@y9@76pplm)kk8f&5zgtjkv22i-5*#_3^z0-'
-
 
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''
@@ -42,6 +42,7 @@ SITE_URL = 'http://localhost:8000'
 # Path to uploaded files
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 MEDIA_ROOT = '/Users/kjoenzau/.local/share/wger/media'
+
 MEDIA_URL = '/media/'
 
 # Allow all hosts to access the application. Change if used in production.

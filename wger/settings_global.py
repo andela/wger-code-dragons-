@@ -26,7 +26,6 @@ For a full list of options, visit:
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
@@ -40,16 +39,17 @@ WSGI_APPLICATION = 'wger.wsgi.application'
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
+
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
-
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 
     # Apps from wger proper
+
     'wger.config',
     'wger.core',
     'wger.email',
@@ -89,12 +89,15 @@ INSTALLED_APPS = (
 
     # django-bower for installing bower packages
     'djangobower',
+
     # social authentication app for django
     'social_django',
+
 )
 
 # added list of external libraries to be installed by bower
 BOWER_INSTALLED_APPS = (
+
     'bootstrap',
     'components-font-awesome',
     'd3',
@@ -114,6 +117,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+
     # social django middleware class
     'social_django.middleware.SocialAuthExceptionMiddleware',
 
@@ -122,7 +126,6 @@ MIDDLEWARE_CLASSES = (
 
     # Custom authentication middleware. Creates users on-the-fly for certain paths
     'wger.utils.middleware.WgerAuthenticationMiddleware',
-
     # Send an appropriate Header so search engines don't index pages
     'wger.utils.middleware.RobotsExclusionMiddleware',
 
@@ -138,6 +141,7 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+
     'wger.utils.helpers.EmailAuthBackend',
     # authentication backends for social login
     'social_core.backends.facebook.FacebookOAuth2',
@@ -162,9 +166,11 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+
                 # social django
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+
                 # Django mobile
                 'django_mobile.context_processors.flavour',
 
@@ -178,7 +184,9 @@ TEMPLATES = [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
+
             'debug': True
+
         },
     },
 ]
@@ -212,11 +220,11 @@ EMAIL_SUBJECT_PREFIX = '[wger] '
 #
 # Login
 #
+
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/dashboard'
 SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/dashboard'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
-
 
 #
 # Internationalization
@@ -236,6 +244,7 @@ TIME_ZONE = None
 
 # Restrict the available languages
 LANGUAGES = (
+
     ('en', 'English'),
     ('de', 'German'),
     ('bg', 'Bulgarian'),
@@ -248,6 +257,7 @@ LANGUAGES = (
     ('sv', 'Swedish'),
     ('no', 'Norwegian'),
     ('fr', 'French'),
+
 )
 
 # Default language code for this installation.
@@ -333,6 +343,7 @@ THUMBNAIL_ALIASES = {
 #
 # Django compressor
 #
+
 STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 # API authentication details for facebook
@@ -391,6 +402,7 @@ IGNORABLE_404_URLS = (
 )
 
 #
+
 # Password rules
 #
 AUTH_PASSWORD_VALIDATORS = [
@@ -409,6 +421,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #
+
 # Application specific configuration options
 #
 # Consult docs/settings.rst for more information
