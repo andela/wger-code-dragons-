@@ -97,8 +97,8 @@ def fitbit_authorisation(request, code=None):
     '''
 
     template_data = {}
-    client_id = '228HWW'
-    client_secret = 'de34f080b2959d2cbd852b44d3ba5131'
+    client_id = '228HZ6'
+    client_secret = '579d419a44d20383a7efbd64287a5566'
 
     fitbit_client = FitbitOauth2Client(client_id, client_secret)
 
@@ -110,7 +110,7 @@ def fitbit_authorisation(request, code=None):
             'code': code,
             'client_id': client_id,
             'grant_type': 'authorization_code',
-            'redirect_uri': 'http://127.0.0.1:8000/en/fitbit'
+            'redirect_uri': 'https://wger-code-dragons.herokuapp.com/en/fitbit'
         }
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -202,7 +202,8 @@ def fitbit_authorisation(request, code=None):
         return render(request, 'user/fitbit.html', template_data)
 
     # link to page that makes user authorize wger to access their fitbit
-    template_data['fitbit_auth_link'] = fitbit_client.authorize_token_url(redirect_uri='http://127.0.0.1:8000/en/fitbit'
+    template_data['fitbit_auth_link'] = \
+        fitbit_client.authorize_token_url(redirect_uri='https://wger-code-dragons.herokuapp.com/en/fitbit'
                                                                           , prompt='consent')[0]
     return render(request, 'user/fitbit.html', template_data)
 
