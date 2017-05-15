@@ -128,7 +128,7 @@ def fitbit_authorisation(request, code=None):
 
             response_weight = requests.get('https://api.fitbit.com/1/user/'
                                            + user_id + '/profile.json',
-                                           headers = headers
+                                           headers=headers
                                            )
             weight = response_weight.json()['user']['weight']
 
