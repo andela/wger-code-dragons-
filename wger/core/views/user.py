@@ -70,7 +70,8 @@ from wger.exercises.models import (
 )
 
 from fitbit import FitbitOauth2Client, Fitbit
-import requests, datetime
+import requests
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -118,22 +119,27 @@ def fitbit_authorisation(request, code=None):
         }
 
         # Get user weight data from fitbit
-        response = requests.post(fitbit_client.request_token_url, form, headers=headers).json()
+        response = requests.post(fitbit_client.request_token_url, form, headers = headers).json()
 
         if "access_token" in response:
             token = response['access_token']
             user_id = response['user_id']
             headers['Authorization'] = 'Bearer ' + token
 
-            response_weight = requests.get('https://api.fitbit.com/1/user/'+ user_id +'/profile.json',
-                                           headers=headers)
+            response_weight = requests.get('https://api.fitbit.com/1/user/' + user_id + '/profile.json',
+                                            headers = headers
+                                           )
             weight = response_weight.json()['user']['weight']
 
-            response_nutrition = requests.get('https://api.fitbit.com/1/user/'+ user_id +'/foods/log/date/2017-05-11.json',
-                headers=headers)
+            response_nutrition = requests.get('https://api.fitbit.com/1/user/'
+                                               + user_id + '/foods/log/date/2017-05-11.json',
+                                               headers = headers
+                                              )
 
-            response_activity = requests.get('https://api.fitbit.com/1/user/'+ user_id +'/activities/date/2017-05-11.json',
-                headers=headers)
+            response_activity = requests.get('https://api.fitbit.com/1/user/'
+                                              + user_id + '/activities/date/2017-05-11.json',
+                                              headers = headers
+                                             )
 
             # add weight and activity to db
             try:
@@ -202,8 +208,10 @@ def fitbit_authorisation(request, code=None):
         return render(request, 'user/fitbit.html', template_data)
 
     # link to page that makes user authorize wger to access their fitbit
-    template_data['fitbit_auth_link'] = fitbit_client.authorize_token_url(redirect_uri='http://127.0.0.1:8000/en/fitbit'
-                                                                          , prompt='consent')[0]
+    template_data['fitbit_auth_link'] = \
+        fitbit_client.authorize_token_url(redirect_uri = 'http://127.0.0.1:8000/en/fitbit',
+                                          prompt = 'consent'
+                                          )[0]
     return render(request, 'user/fitbit.html', template_data)
 
 
@@ -254,7 +262,6 @@ def delete(request, user_pk=None):
                'form_action': form_action}
 
     return render(request, 'user/delete_account.html', context)
-
 
 
 @login_required()
