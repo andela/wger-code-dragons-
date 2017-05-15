@@ -36,7 +36,7 @@ NOCAPTCHA = True
 # This is needed for uploaded files and images (exercise images, etc.) to be
 # properly served.
 SITE_URL = 'http://localhost:8000'
-#144209939
+# 144209939
 # Path to uploaded files
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 MEDIA_ROOT = '/Users/ben/.local/share/wger/media'
