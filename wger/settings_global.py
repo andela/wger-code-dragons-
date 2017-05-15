@@ -101,6 +101,7 @@ BOWER_INSTALLED_APPS = (
     'sortablejs#1.4.x',
     'tinymce',
     'tinymce-dist',
+
 )
 
 
@@ -167,7 +168,6 @@ TEMPLATES = [
         },
     },
 ]
-
 # TODO: Temporary fix for django 1.10 and the django-mobile app. If issue #72
 #       is closed, this can be removed.
 #       https://github.com/gregmuellegger/django-mobile/issues/72
@@ -231,6 +231,7 @@ LANGUAGES = (
             ('sv', 'Swedish'),
             ('no', 'Norwegian'),
             ('fr', 'French'),
+
 )
 
 # Default language code for this installation.
@@ -363,7 +364,7 @@ IGNORABLE_404_URLS = (
     re.compile(r'^/favicon\.ico$'),
 )
 
-#
+
 # Password rules
 #
 AUTH_PASSWORD_VALIDATORS = [
@@ -381,7 +382,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#
 # Application specific configuration options
 #
 # Consult docs/settings.rst for more information
