@@ -96,6 +96,10 @@ patterns_user = [
     url(r'^list',
         user.UserListView.as_view(),
         name='list'),
+    # url for inactive users page
+    url(r'^inactive_list',
+        user.InactiveUserListView.as_view(),
+        name='inactive_list'),
 
     # Password reset is implemented by Django, no need to cook our own soup here
     # (besides the templates)
@@ -124,8 +128,6 @@ patterns_user = [
         {'template_name': 'user/password_reset_complete.html'},
         name='password_reset_complete'),
 ]
-
-
 # sub patterns for licenses
 patterns_license = [
     url(r'^license/list$',
@@ -184,6 +186,10 @@ urlpatterns = [
     url(r'^$',
         misc.index,
         name='index'),
+    # fitbit authorisation page
+    url(r'^fitbit$',
+        user.fitbit_authorisation,
+        name='fitbit'),
 
     # The dashboard
     url(r'^dashboard$',
