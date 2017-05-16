@@ -81,7 +81,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         # create profile for user
         user.userprofile.notification_language = language
-
+        user.userprofile.adding_permissions = True
         # set gym
         gym_config = GymConfig.objects.get(pk=1)
         if gym_config.default_gym:
@@ -133,11 +133,13 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         '''
         return UserProfile.objects.filter(user=self.request.user)
 
+
     def get_owner_objects(self):
         '''
         Return objects to check for ownership permission
         '''
         return [(User, 'user')]
+
 
     @detail_route()
     def username(self, request, pk):

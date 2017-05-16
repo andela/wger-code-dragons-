@@ -81,6 +81,7 @@ class Language(models.Model):
 class ApiUser(models.Model):
     user = models.OneToOneField(User, editable=False)
     created_by = models.ForeignKey(User, related_name="api_user_created_by")
+    adding_permissions = models.BooleanField(User, default=False)
 
 
 @python_2_unicode_compatible
@@ -107,9 +108,8 @@ class UserProfile(models.Model):
         (UNITS_KG, _('Metric (kilogram)')),
         (UNITS_LB, _('Imperial (pound)'))
     )
+    user = models.OneToOneField(User, editable=False)
 
-    user = models.OneToOneField(User,
-                                editable=False)
     '''
     The user
     '''
@@ -127,10 +127,6 @@ class UserProfile(models.Model):
     '''
     Flag to mark a temporary user (demo account)
     '''
-
-    #
-    # User preferences
-    #
 
     show_comments = models.BooleanField(verbose_name=_('Show exercise comments'),
                                         help_text=_('Check to show exercise comments on the '
@@ -316,7 +312,14 @@ by the US Department of Agriculture. It is extremely complete, with around
                                                    validators=[MinValueValidator(0),
                                                                MaxValueValidator(30)],
                                                    default=0)
-    '''Number of Days for email weight reminder'''
+    adding_permissions = models.BooleanField(default=True)
+
+
+    @property
+    def api_creation_rights(self):
+        api_creation_rights = ApiUser.objects.filter(id = self.id).adding_permissions
+        return api_creation_rights
+
 
     @property
     def weight(self):

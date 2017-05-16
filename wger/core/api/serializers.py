@@ -38,19 +38,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ApiUser
-        read_only_fields = ('user', 'created_by',)
+        read_only_fields = ('user', 'created_by','api_creation_rights',)
         exclude = ('groups', 'user_permissions',)
-
-        # fields = ('username','email','password')
-        # extra_kwargs = {'password': {'write_only': True}}
-
-# class ListUserSerializer(serializers.ModelSerializer):
-#     '''
-#     List User serializer
-#     '''
-#     class Meta:
-#         model = User
-#         pass
 
 
 class UserprofileSerializer(serializers.ModelSerializer):
@@ -59,6 +48,7 @@ class UserprofileSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = UserProfile
+        # read_only_fields = ('api_creation_rights',)
 
 
 class UsernameSerializer(serializers.Serializer):

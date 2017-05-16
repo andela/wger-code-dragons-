@@ -15,10 +15,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database.sqlite',
-        'USER': '',
-        'PASSWORD': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test_wger',
+        'USER': 'postgres',
+        'PASSWORD': 'Sherry_254',
         'HOST': '127.0.0.1',
         'PORT': '',
     }

@@ -20,9 +20,8 @@ class Command(BaseCommand):
         parser.add_argument('new_email', type=str)
 
     def handle(self, **options):
-        user = User.objects.filter(username=options['username'])
-        # print(user)
-        if user[0]:
+        user = User.objects.filter(username=options['username']).first()
+        if user:
             client = requests.session()
             client.get(settings.SITE_URL + '/user/login')
             csrftoken = client.cookies['csrftoken']
@@ -30,27 +29,36 @@ class Command(BaseCommand):
                                      data={"username": options['username'],
                                            "password": options['password'],
                                            "csrfmiddlewaretoken": csrftoken})
-            self.token, created = Token.objects.get_or_create(user=user[0])
+            self.token, created = Token.objects.get_or_create(user=user)
             token = self.token.key
             print(token)
-            if response.status_code == 200:
-                if User.objects.filter(username=options['new_username'])\
-                   or User.objects.filter(email=options['new_email']):
-                    raise CommandError("Username or email provided is already in use")
-                else:
-                    payload = {"user":
-                               {
-                                   "username": options['new_username'],
-                                   "password": '1234',
-                                   "email": options['new_email']},
-                               "csrfmiddlewaretoken": csrftoken}
-                    requests.post(settings.SITE_URL + '/api/v2/user/',
-                                  headers={
-                                      'Authorization': 'Token ' + token,
-                                      'content-type': 'application/json'},
-                                  data=json.dumps(payload))
-                    return 'Successfully saved user'
+            if user.userprofile.adding_permissions == False:
+                return 'No permisions for adding user'
             else:
-                raise CommandError("Incorrect password")
+                if response.status_code == 200:
+                    if User.objects.filter(username=options['new_username'])\
+                       or User.objects.filter(email=options['new_email']):
+                        raise CommandError("Username or email provided is already in use")
+                    else:
+                        payload = {"user":
+                                   {
+                                       "username": options['new_username'],
+                                       "password": '1234',
+                                       "email": options['new_email'],
+                                       "adding_permissions":False},
+                                   "csrfmiddlewaretoken": csrftoken}
+                        requests.post(settings.SITE_URL + '/api/v2/user/',
+                                      headers={
+                                          'Authorization': 'Token ' + token,
+                                          'content-type': 'application/json'},
+                                      data=json.dumps(payload))
+                        new_user = User.objects.filter(username=options['new_username']).first()
+                        new_user.userprofile.adding_permissions = False
+                        new_user.userprofile.save()
+
+                        return 'Successfully saved user'
+
+                else:
+                    raise CommandError("Incorrect password")
         else:
             raise CommandError("The username provided does not exist")
