@@ -41,6 +41,15 @@ class EquipmentSerializer(serializers.ModelSerializer):
         model = Equipment
 
 
+class ExerciseInfoSerializer(serializers.ModelSerializer):
+    '''
+    Exercise info serializer
+    '''
+
+    class Meta:
+        model = Exercise
+
+
 class ExerciseCategorySerializer(serializers.ModelSerializer):
     '''
     ExerciseCategory serializer

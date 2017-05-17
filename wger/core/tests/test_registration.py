@@ -58,8 +58,8 @@ class RegistrationTestCase(WorkoutManagerTestCase):
 
         # Fill in the registration form
         registration_data = {'username': 'myusername',
-                             'password1': 'secret',
-                             'password2': 'secret',
+                             'password1': 'secret@12',
+                             'password2': 'secret@12',
                              'email': 'not an email',
                              'g-recaptcha-response': 'PASSED', }
         count_before = User.objects.count()
@@ -73,7 +73,7 @@ class RegistrationTestCase(WorkoutManagerTestCase):
         registration_data['email'] = 'my.email@example.com'
         response = self.client.post(reverse('core:user:registration'), registration_data)
         count_after = User.objects.count()
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(count_before + 1, count_after)
         self.user_logout()
 
@@ -108,8 +108,8 @@ class RegistrationTestCase(WorkoutManagerTestCase):
 
             # Fill in the registration form
             registration_data = {'username': 'myusername',
-                                 'password1': 'secret',
-                                 'password2': 'secret',
+                                 'password1': 'secret12',
+                                 'password2': 'secret12',
                                  'email': 'my.email@example.com',
                                  'g-recaptcha-response': 'PASSED', }
             count_before = User.objects.count()

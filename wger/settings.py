@@ -6,7 +6,7 @@ from wger.settings_global import *
 # Use 'DEBUG = True' to get more details for server errors
 DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = True
-STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
+
 ADMINS = (
     ('Your name', 'your_email@example.com'),
 )
@@ -16,16 +16,19 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'database.sqlite',
+
+        'NAME': '/Users/kjoenzau/.local/share/wger/database.sqlite',
         'USER': '',
         'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '',
+        'HOST': '',
+        'PORT':'',
+
+        
     }
 }
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'e_e^a#btn1a76r@y9@76pplm)kk8f&5zgtjkv22i-5*#_3^z0-'
+SECRET_KEY = 'jdjddlg93b$$ez#_^5vuso98a3om&qpj8w#@455$$497$2ddw@'
 
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''
@@ -46,7 +49,7 @@ MEDIA_URL = '/media/'
 ALLOWED_HOSTS = '*'
 
 # This might be a good idea if you setup memcached
-#SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
 # Configure a real backend in production
 if DEBUG:
@@ -56,4 +59,4 @@ if DEBUG:
 WGER_SETTINGS['EMAIL_FROM'] = 'wger Workout Manager <wger@example.com>'
 
 # Your twitter handle, if you have one for this instance.
-#WGER_SETTINGS['TWITTER'] = ''
+# WGER_SETTINGS['TWITTER'] = ''

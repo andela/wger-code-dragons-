@@ -46,8 +46,14 @@ coverage.xml
 
 # Django stuff:
 *.log
+<<<<<<< HEAD
 
 
+=======
+#settings*.py
+.DS_Store*
+*.sqlite
+>>>>>>> cab3e014c5d11eaf30ba874a633a04075148d0e4
 /CACHE
 
 # Sphinx documentation
@@ -62,3 +68,10 @@ target/
 # External Libraries
 wger/core/static/bower_components
 node_modules
+# DS_Store
+.DS_Store
+wger/.DS_Store
+
+database.sqlite
+wger-codedragons.herokuapp.com/
+wger/staticfiles/
