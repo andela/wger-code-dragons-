@@ -144,6 +144,7 @@ class ExerciseInfoViewSet(viewsets.ModelViewSet):
                      'license',
                      'license_author')
 
+
 class EquipmentViewSet(viewsets.ReadOnlyModelViewSet):
     '''
     API endpoint for equipment objects
