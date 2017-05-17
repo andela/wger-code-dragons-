@@ -53,3 +53,8 @@ Sphinx==1.5.5
 sqlparse==0.2.3
 tag==0.3.2
 webencodings==0.5.1
+
+social-auth-app-django==0.1.0
+social-auth-core==0.2.1
+
+
