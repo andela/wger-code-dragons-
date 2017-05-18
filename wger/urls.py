@@ -42,6 +42,9 @@ from wger.exercises.api import views as exercises_api_views
 from wger.nutrition.api import views as nutrition_api_views
 from wger.weight.api import views as weight_api_views
 
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
 #
 # REST API
 #
@@ -145,6 +148,10 @@ urlpatterns = i18n_patterns(
     url(r'config/', include('wger.config.urls', namespace='config', app_name='config')),
     url(r'gym/', include('wger.gym.urls', namespace='gym', app_name='gym')),
     url(r'email/', include('wger.email.urls', namespace='email')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+
     url(r'^sitemap\.xml$',
         sitemap,
         {'sitemaps': sitemaps},
@@ -160,6 +167,7 @@ urlpatterns += [
         name='robots'),
     url(r'^manifest\.webapp$', WebappManifestView.as_view(template_name="manifest.webapp")),
     url(r'^amazon-manifest\.webapp$', WebappManifestView.as_view(template_name="amazon-manifest.webapp")),
+    #url(r'^oauth/', include('social_django.urls', namespace='social')),
 
     # API
     url(r'^api/', include(v1_api.urls)),
