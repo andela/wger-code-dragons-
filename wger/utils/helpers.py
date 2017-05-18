@@ -230,3 +230,15 @@ def smart_capitalize(input):
         else:
             out.append(word)
     return ' '.join(out)
+
+def search_user(identifier):
+    '''
+    Returns a user by their identifier and return their details such as: exercises, nutrition stuff... 
+    '''
+    user_details = User.objects.filter(email=identifier)
+    if len(user_details) == 0:
+        return "Does Not Exist"
+    else:
+        user = User.objects.get(email=identifier)
+        return user
+
