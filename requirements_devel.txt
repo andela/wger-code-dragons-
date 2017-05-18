@@ -8,4 +8,4 @@
 # Development packages
 #pep8
 #django-debug-toolbar
-coverage
+#coverage
