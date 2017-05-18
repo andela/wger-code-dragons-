@@ -346,7 +346,7 @@ THUMBNAIL_ALIASES = {
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 SOCIAL_AUTH_USER_FIELDS = ['email', 'username']
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
