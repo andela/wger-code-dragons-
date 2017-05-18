@@ -34,6 +34,7 @@ from wger.utils.generic_views import (
 )
 from wger.utils.language import load_item_languages
 from wger.config.models import LanguageConfig
+from wger.utils.cache import delete_muscle_id_cache
 
 logger = logging.getLogger(__name__)
 
@@ -117,4 +118,5 @@ class MuscleDeleteView(WgerDeleteMixin, LoginRequiredMixin, PermissionRequiredMi
         context = super(MuscleDeleteView, self).get_context_data(**kwargs)
         context['title'] = _(u'Delete {0}?').format(self.object.name)
         context['form_action'] = reverse('exercise:muscle:delete', kwargs={'pk': self.kwargs['pk']})
+        delete_muscle_id_cache({'pk': self.kwargs['pk']})
         return context

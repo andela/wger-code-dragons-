@@ -42,6 +42,9 @@ def delete_template_fragment_cache(fragment_name='', *args):
 def reset_workout_canonical_form(workout_id):
     cache.delete(cache_mapper.get_workout_canonical(workout_id))
 
+def delete_muscle_id_cache(id):
+    cache.delete(cache_mapper.get_exercise_muscle_bg_key(id))
+
 
 def reset_workout_log(user_pk, year, month, day=None):
     '''

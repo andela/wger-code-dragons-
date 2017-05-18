@@ -128,6 +128,10 @@ class UserProfile(models.Model):
     Flag to mark a temporary user (demo account)
     '''
 
+    #
+    # User preferences
+    #
+
     show_comments = models.BooleanField(verbose_name=_('Show exercise comments'),
                                         help_text=_('Check to show exercise comments on the '
                                                     'workout view'),
@@ -312,7 +316,7 @@ by the US Department of Agriculture. It is extremely complete, with around
                                                    validators=[MinValueValidator(0),
                                                                MaxValueValidator(30)],
                                                    default=0)
-    adding_permissions = models.BooleanField(default=True)
+    creation_rights = models.BooleanField(default=False)
 
 
     @property
