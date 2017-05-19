@@ -86,6 +86,8 @@ INSTALLED_APPS = (
 
     # django-bower for installing bower packages
     'djangobower',
+
+    'social_django'
 )
 
 # added list of external libraries to be installed by bower
@@ -101,6 +103,7 @@ BOWER_INSTALLED_APPS = (
     'sortablejs#1.4.x',
     'tinymce',
     'tinymce-dist',
+    'bootstrap-social',
 )
 
 
@@ -116,21 +119,28 @@ MIDDLEWARE_CLASSES = (
     # Custom authentication middleware. Creates users on-the-fly for certain paths
     'wger.utils.middleware.WgerAuthenticationMiddleware',
 
+
     # Send an appropriate Header so search engines don't index pages
     'wger.utils.middleware.RobotsExclusionMiddleware',
-
+    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'django.middleware.locale.LocaleMiddleware',
 
     # Django mobile
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'wger.utils.helpers.EmailAuthBackend'
+    'wger.utils.helpers.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
 )
 
 TEMPLATES = [
@@ -150,6 +160,9 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
 
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+
                 # Django mobile
                 'django_mobile.context_processors.flavour',
 
@@ -167,6 +180,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 # TODO: Temporary fix for django 1.10 and the django-mobile app. If issue #72
 #       is closed, this can be removed.
@@ -197,8 +211,22 @@ EMAIL_SUBJECT_PREFIX = '[wger] '
 #
 # Login
 #
-LOGIN_URL = '/user/login'
+# AUTH_USER_MODEL = 'auth.User'
+# SOCIAL_AUTH_USER_MODEL = 'auth.User'
+
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/dashboard'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1269407003109297'
+SOCIAL_AUTH_FACEBOOK_SECRET = '2658385dee664cda0f0b446b6aecd671'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('283272038266-5snsealg791ohlthh79toih4753ebsvj'
+                                 '.apps.googleusercontent.com')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'je2c-T13lEtmMOSpasqh1-M0'
+SOCIAL_AUTH_TWITTER_KEY = 'RRXsckKpSk9Tpyyw8WElcUldQ'
+SOCIAL_AUTH_TWITTER_SECRET = 'dgSq3ijeKn3DWFf1OHkO6XE7IbdcsPIXGZkWBr7bfv1MhTY9z2'
 
 
 #
@@ -318,6 +346,16 @@ THUMBNAIL_ALIASES = {
 #
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+
+SOCIAL_AUTH_USER_FIELDS = ['email', 'username']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id,name,email',
+}
+SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
+SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
 # The default is not DEBUG, override if needed
 # COMPRESS_ENABLED = True
