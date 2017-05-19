@@ -44,7 +44,8 @@ def load_language(language_code=None):
     else:
         used_language = language_code
 
-    language = cache.get(cache_mapper.get_language_key(used_language))
+    # language = cache.get(cache_mapper.get_language_key(used_language))
+    language, is_created = Language.objects.get_or_create(short_name=used_language)
     if language:
         return language
 
