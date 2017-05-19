@@ -122,7 +122,7 @@ MIDDLEWARE_CLASSES = (
 
     # Send an appropriate Header so search engines don't index pages
     'wger.utils.middleware.RobotsExclusionMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
@@ -211,8 +211,8 @@ EMAIL_SUBJECT_PREFIX = '[wger] '
 #
 # Login
 #
-#AUTH_USER_MODEL = 'auth.User'
-#SOCIAL_AUTH_USER_MODEL = 'auth.User'
+# AUTH_USER_MODEL = 'auth.User'
+# SOCIAL_AUTH_USER_MODEL = 'auth.User'
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
@@ -222,7 +222,8 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/dashboard'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1269407003109297'
 SOCIAL_AUTH_FACEBOOK_SECRET = '2658385dee664cda0f0b446b6aecd671'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '283272038266-5snsealg791ohlthh79toih4753ebsvj.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ('283272038266-5snsealg791ohlthh79toih4753ebsvj'
+                                 '.apps.googleusercontent.com')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'je2c-T13lEtmMOSpasqh1-M0'
 SOCIAL_AUTH_TWITTER_KEY = 'RRXsckKpSk9Tpyyw8WElcUldQ'
 SOCIAL_AUTH_TWITTER_SECRET = 'dgSq3ijeKn3DWFf1OHkO6XE7IbdcsPIXGZkWBr7bfv1MhTY9z2'
@@ -351,7 +352,7 @@ STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 SOCIAL_AUTH_USER_FIELDS = ['email', 'username']
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id,name,email', 
+    'fields': 'id,name,email',
 }
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
