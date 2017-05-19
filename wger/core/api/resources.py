@@ -13,7 +13,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU Affero General Public License
-from django.contrib.auth.models import User
+
 from tastypie.authentication import ApiKeyAuthentication
 from tastypie.constants import ALL
 from tastypie.resources import ModelResource
@@ -25,17 +25,6 @@ from wger.core.models import (
     DaysOfWeek,
     License
 )
-
-
-class UserResource(ModelResource):
-    '''Create resource for user'''
-    def authorized_read_list(self, object_list, bundle):
-        return object_list.filter(username=bundle.request.user)
-
-    class Meta:
-        queryset = UserProfile.objects.all()
-        authentication = ApiKeyAuthentication()
-        authorization = UserObjectsOnlyAuthorization()
 
 
 class UserProfileResource(ModelResource):

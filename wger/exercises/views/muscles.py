@@ -19,7 +19,6 @@ from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMix
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy
-from django.core.cache import cache
 
 from django.views.generic import (
     ListView,
@@ -35,8 +34,6 @@ from wger.utils.generic_views import (
 )
 from wger.utils.language import load_item_languages
 from wger.config.models import LanguageConfig
-# from wger.utils.cache import reset_cache
-
 
 logger = logging.getLogger(__name__)
 
@@ -45,12 +42,10 @@ class MuscleListView(ListView):
     '''
     Overview of all muscles and their exercises
     '''
-    template_name = 'muscles/overview.html'
+    model = Muscle
+    queryset = Muscle.objects.all().order_by('-is_front', 'name'),
     context_object_name = 'muscle_list'
-
-    def get_queryset(self):
-        queryset = Muscle.objects.all().order_by('-is_front', 'name')
-        return queryset,
+    template_name = 'muscles/overview.html'
 
     def get_context_data(self, **kwargs):
         '''
@@ -62,7 +57,7 @@ class MuscleListView(ListView):
         return context
 
 
-class MuscleAdminListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class MuscleAdminListView(LoginRequiredMixin, PermissionRequiredMixin, MuscleListView):
     '''
     Overview of all muscles, for administration purposes
     '''
@@ -122,5 +117,4 @@ class MuscleDeleteView(WgerDeleteMixin, LoginRequiredMixin, PermissionRequiredMi
         context = super(MuscleDeleteView, self).get_context_data(**kwargs)
         context['title'] = _(u'Delete {0}?').format(self.object.name)
         context['form_action'] = reverse('exercise:muscle:delete', kwargs={'pk': self.kwargs['pk']})
-        cache.clear()
         return context

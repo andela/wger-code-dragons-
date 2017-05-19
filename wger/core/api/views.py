@@ -14,20 +14,11 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with Workout Manager.  If not, see <http://www.gnu.org/licenses/>.
+
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
-from rest_framework import permissions
-
-from django.utils import translation
-from wger.core.models import Language
-from wger.config.models import GymConfig
-from wger.gym.models import (
-    AdminUserNote,
-    GymUserConfig,
-    Contract
-)
 
 from wger.core.models import (
     UserProfile,
@@ -35,90 +26,17 @@ from wger.core.models import (
     DaysOfWeek,
     License,
     RepetitionUnit,
-    WeightUnit,
-    ApiUser)
+    WeightUnit)
 from wger.core.api.serializers import (
     UsernameSerializer,
     LanguageSerializer,
     DaysOfWeekSerializer,
     LicenseSerializer,
     RepetitionUnitSerializer,
-    WeightUnitSerializer,
-    UserSerializer
+    WeightUnitSerializer
 )
 from wger.core.api.serializers import UserprofileSerializer
 from wger.utils.permissions import UpdateOnlyPermission, WgerPermission
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    '''
-    API endpoint for user objects
-    '''
-    is_private = True
-    serializer_class = UserSerializer
-    permission_classes = (WgerPermission, permissions.IsAuthenticatedOrReadOnly)
-    ordering_fields = '__all__'
-
-    def get_queryset(self):
-        '''
-        Only allow access to appropriate objects
-        '''
-        return ApiUser.objects.filter(created_by=self.request.user)
-
-    def perform_create(self, serializer):
-        '''
-        To create new user
-        '''
-        # new_user = User.objects.filter(username=options['new_username']).first()
-        # new_user.userprofile.adding_permissions = False
-        # new_user.userprofile.save()
-
-        user_data = self.request.data["user"]
-        print("\n\n\n response \n{}\n\n\n".format(user_data))
-        user = User.objects.create_user(username=user_data["username"],
-                                        password=user_data["password"],
-                                        email=user_data["email"])
-        user.save()
-        # set language
-        language = Language.objects.get(short_name=translation.get_language())
-
-        # create profile for user
-        user.userprofile.notification_language = language
-        user.userprofile.adding_permissions = True
-        # set gym
-        gym_config = GymConfig.objects.get(pk=1)
-        if gym_config.default_gym:
-            user.userprofile.gym = gym_config.default_gym
-
-            # Create gym user configuration object
-            config = GymUserConfig()
-            config.gym = gym_config.default_gym
-            config.user = user
-            config.save()
-
-        # save user profile
-        user.userprofile.save()
-
-        serializer.save(created_by=self.request.user, user=user)
-# class UserViewSet(viewsets.ReadOnlyModelViewSet):
-#     serializer_class = UserSerializer
-#     queryset = User.objects.all()
-#     def create(self, request):
-#         serializer = self.get_serializer(data=request.data)
-#         if serializer.is_valid():
-#             user = User.objects.create_user(username=serializer.validated_data['username'],
-#                                             email=serializer.validated_data['email'],
-#                                             password=serializer.validated_data['password'])
-#
-#             # user.api_key()
-#             return Response(serializer.data, status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
-
-# class UserViewSet(viewsets.ReadOnlyModelViewSet):
-#     serializer_class = ListUserSerializer
-#     queryset = User.objects.all()
-#     def list(self):
-#         pass
 
 
 class UserProfileViewSet(viewsets.ModelViewSet):

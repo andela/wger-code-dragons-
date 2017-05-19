@@ -59,7 +59,7 @@ script:
   - gulp lint
 
   # Regular application
-  - coverage run --source='wger' ./manage.py test
+  - coverage run --source='.' ./manage.py test
 
 
   # Code coverage
