@@ -32,7 +32,7 @@ class Command(BaseCommand):
             self.token, created = Token.objects.get_or_create(user=user)
             token = self.token.key
             print(token)
-            if user.userprofile.adding_permissions == False:
+            if user.userprofile.adding_permissions is False:
                 return 'No permisions for adding user'
             else:
                 if response.status_code == 200:
@@ -45,14 +45,13 @@ class Command(BaseCommand):
                                        "username": options['new_username'],
                                        "password": '1234',
                                        "email": options['new_email'],
-                                       "adding_permissions":False},
+                                       "adding_permissions": False},
                                    "csrfmiddlewaretoken": csrftoken}
-                        r=requests.post(settings.SITE_URL + '/api/v2/user/',
+                        requests.post(settings.SITE_URL + '/api/v2/user/',
                                       headers={
                                           'Authorization': 'Token ' + token,
                                           'content-type': 'application/json'},
                                       data=json.dumps(payload))
-                        print(r.status_code)
                         new_user = User.objects.filter(username=options['new_username']).first()
                         print(new_user)
                         new_user.userprofile.adding_permissions = False

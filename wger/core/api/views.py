@@ -136,13 +136,11 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         '''
         return UserProfile.objects.filter(user=self.request.user)
 
-
     def get_owner_objects(self):
         '''
         Return objects to check for ownership permission
         '''
         return [(User, 'user')]
-
 
     @detail_route()
     def username(self, request, pk):

@@ -38,8 +38,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ApiUser
-        read_only_fields = ('user', 'created_by','api_creation_rights',)
-        exclude = ('groups','user_permissions',)
+        read_only_fields = ('user', 'created_by', 'api_creation_rights',)
+        exclude = ('groups', 'user_permissions',)
 
 
 class UserprofileSerializer(serializers.ModelSerializer):

@@ -318,12 +318,10 @@ by the US Department of Agriculture. It is extremely complete, with around
                                                    default=0)
     adding_permissions = models.BooleanField(default=False)
 
-
     @property
     def api_creation_rights(self):
-        api_creation_rights = ApiUser.objects.filter(id = self.id).adding_permissions
+        api_creation_rights = ApiUser.objects.filter(id=self.id).adding_permissions
         return api_creation_rights
-
 
     @property
     def weight(self):
