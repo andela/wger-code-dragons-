@@ -25,7 +25,7 @@ DATABASES = {
 }
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '$zo_hec%jqx2zs_1@100-c2+f4b2=hqu9h66p4ww4n35hv8@!)'
+SECRET_KEY = '08&q9lwk144_-oh#%p*38t0j2uqdy)fo=^h#0#ck452_)z0@+5'
 
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''
@@ -46,7 +46,7 @@ MEDIA_URL = '/media/'
 ALLOWED_HOSTS = '*'
 
 # This might be a good idea if you setup memcached
-# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+#SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
 # Configure a real backend in production
 if DEBUG:
@@ -56,4 +56,4 @@ if DEBUG:
 WGER_SETTINGS['EMAIL_FROM'] = 'wger Workout Manager <wger@example.com>'
 
 # Your twitter handle, if you have one for this instance.
-# WGER_SETTINGS['TWITTER'] = ''
+#WGER_SETTINGS['TWITTER'] = ''
