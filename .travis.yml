@@ -1,3 +1,4 @@
+
 language: python
 
 # Cache the pip files
@@ -14,7 +15,6 @@ sudo: false
 
 # Python versions to test
 python:
-  - "2.7"
   - "3.6"
 
 # Manually define here the combinations environment variables to test
@@ -66,4 +66,4 @@ script:
   - coverage report
 
 notifications:
-  slack: andela:8DbRvmOh7phvPWX0Y2CXJvWX
+slack: andela:8DbRvmOh7phvPWX0Y2CXJvWX
