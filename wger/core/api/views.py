@@ -69,6 +69,9 @@ class UserViewSet(viewsets.ModelViewSet):
         '''
         To create new user
         '''
+        # new_user = User.objects.filter(username=options['new_username']).first()
+        # new_user.userprofile.adding_permissions = False
+        # new_user.userprofile.save()
 
         user_data = self.request.data["user"]
         print("\n\n\n response \n{}\n\n\n".format(user_data))

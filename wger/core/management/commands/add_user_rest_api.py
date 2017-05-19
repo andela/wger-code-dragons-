@@ -47,15 +47,16 @@ class Command(BaseCommand):
                                        "email": options['new_email'],
                                        "adding_permissions":False},
                                    "csrfmiddlewaretoken": csrftoken}
-                        requests.post(settings.SITE_URL + '/api/v2/user/',
+                        r=requests.post(settings.SITE_URL + '/api/v2/user/',
                                       headers={
                                           'Authorization': 'Token ' + token,
                                           'content-type': 'application/json'},
                                       data=json.dumps(payload))
+                        print(r.status_code)
                         new_user = User.objects.filter(username=options['new_username']).first()
+                        print(new_user)
                         new_user.userprofile.adding_permissions = False
                         new_user.userprofile.save()
-
                         return 'Successfully saved user'
 
                 else:

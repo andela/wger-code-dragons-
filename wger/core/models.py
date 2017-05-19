@@ -316,7 +316,7 @@ by the US Department of Agriculture. It is extremely complete, with around
                                                    validators=[MinValueValidator(0),
                                                                MaxValueValidator(30)],
                                                    default=0)
-    creation_rights = models.BooleanField(default=False)
+    adding_permissions = models.BooleanField(default=False)
 
 
     @property

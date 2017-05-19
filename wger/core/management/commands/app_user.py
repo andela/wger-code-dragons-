@@ -24,5 +24,7 @@ class Command(BaseCommand):
         user = User.objects.create_user(username=options["username"],
                                         password=options["password"],
                                         email=options["email"])
+        user.userprofile.adding_permissions = True
+        user.userprofile.save()
 
         return 'Successfully saved app user'
