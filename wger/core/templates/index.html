@@ -7,7 +7,27 @@
 {# Header #}
 {#        #}
 {% block header %}
-<script src="{% static 'js/weight.js' %}"></script>
+<script src="{% static 'js/weight.js' %}">
+</script>
+  <script>
+        $(document).ready(function () {
+            // Prevent the form from being submited if JavaScript is enabled
+            $("#search_form").submit(function () {
+                return false;
+            });
+
+            // Init the autocompleter
+            $("#member-search").autocomplete({
+                serviceUrl: '/api/v2/userprofile/search/',
+                dataType: 'json',
+                paramName: 'term',
+                minChars: 3,
+                onSelect: function (suggestion) {
+                     window.location.href = '/core/' + suggestion.data.id + '/view/'
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
 
@@ -38,7 +58,7 @@ day in your current workout:{% endblocktrans %} <strong>{{current_workout}}</str
 {% endif %}
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h4>{% trans "Workout"%}</h4>
             {% if current_workout %}
                 <p>
@@ -70,7 +90,7 @@ day in your current workout:{% endblocktrans %} <strong>{{current_workout}}</str
                 {% endfor %}
             </table>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h4>{% trans "Nutrition plan"%}</h4>
 
         {% if plan %}
@@ -108,8 +128,43 @@ day in your current workout:{% endblocktrans %} <strong>{{current_workout}}</str
             </tr>
         </table>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h4>{% trans "Weight"%}</h4>
+        <p>
+            <a href="{% url 'weight:overview' user.username %}">{% trans "Overview" %}</a>
+        </p>
+
+        {% if weight %}
+        <p>
+            {% trans "Your current weight is: "%}
+            {{weight.weight|floatformat}} {% trans_weight_unit 'kg' user %}
+        </p>
+        <table class="table table-hover table-condensed">
+            {% for entry_detail in last_weight_entries %}
+            <tr>
+                <td>
+                    {{ entry_detail.0.date }}
+                </td>
+                <td>
+                    {{ entry_detail.0.weight }}
+                </td>
+                <td>
+                    {% if entry_detail.1 > 0 %}
+                        +
+                    {% endif %}
+                    {% if entry_detail.1 %}
+                        {{ entry_detail.1 }}
+                    {% else %}
+                        -/-
+                    {% endif %}
+                <td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+        <div class="col-sm-3">
+        <h4>{% trans "Comparison"%}</h4>
         <p>
             <a href="{% url 'weight:overview' user.username %}">{% trans "Overview" %}</a>
         </p>
@@ -167,7 +222,7 @@ or, if you don't have one, simply by date.{% endblocktrans %}</em></p>
 </div>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         {% if current_workout %}
             {% if current_workout.day_set.all %}
                 <a href="#" id="logging-popup-link" data-toggle="modal" data-target="#calendar-day-select-popup" class="btn btn-success btn-sm">
@@ -180,7 +235,7 @@ or, if you don't have one, simply by date.{% endblocktrans %}</em></p>
             </a>
         {% endif %}
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         {% if not plan %}
                 <a href="{% url 'nutrition:plan:add' %}" class="btn btn-sm  btn-success">
                     {% trans "No nutrition plans." %} {% trans "Add one now." %}
@@ -194,10 +249,26 @@ or, if you don't have one, simply by date.{% endblocktrans %}</em></p>
             -->
         </p>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <a href="{% url 'weight:add' %}" class="btn btn-success btn-sm wger-modal-dialog">
             {% trans "Add weight entry" %}
         </a>
+    </div>
+    <div class="col-sm-3">
+        <form action="{% url 'member-search' %}"
+          method="get"
+          id="member_search_form">
+        <input name="term"
+           type="search"
+           id="member-search"
+           class="ajax-form-element form-control"
+           placeholder="{% trans 'type in a username or email' %}">
+        </form>
+
+        <!--<a href="{% url 'weight:add' %}" class="btn btn-success btn-sm wger-modal-dialog">
+            {% trans "Compare" %}
+        </a>-->
+
     </div>
 </div>
 {% endblock %}
