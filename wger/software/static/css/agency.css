@@ -70,7 +70,10 @@ h6 {
   /*font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
   font-family: "Open Sans Bold", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
+}
+.img-responsive {
+    width: 100%;
 }
 .img-centered {
   margin: 0 auto;
@@ -132,10 +135,10 @@ fieldset[disabled] .btn-primary.active {
   border-color: #204a87;
   font-family: "Open Sans Bold", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
-  border-radius: 3px;
-  font-size: 18px;
-  padding: 20px 40px;
+  font-weight: 400;
+  border-radius: 1px;
+  font-size: 14px;
+  padding: 15px 20px;
 }
 .btn-xl:hover,
 .btn-xl:focus,
@@ -253,30 +256,34 @@ fieldset[disabled] .btn-xl.active {
   }
 }
 header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/main.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.0),rgba(0, 0, 0, 0.0)),url('../images/main.jpg');
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  -o-background-size: cover;
+    height:450px;
+  -o-background-size: contain;
   text-align: center;
   color: white;
 }
+
 header .intro-text {
-  padding-top: 100px;
+  padding-top: 300px;
   padding-bottom: 50px;
 }
 header .intro-text .intro-lead-in {
-  font-family: "Open Sans Light", Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
+    /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
   font-style: italic;
   font-size: 22px;
   line-height: 22px;
   margin-bottom: 25px;
 }
 header .intro-text .intro-heading {
-  font-family: "Open Sans Light", Arial, Helvetica, sans-serif;
+  /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
+    font-family: 'Lato', sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 50px;
@@ -285,28 +292,33 @@ header .intro-text .intro-heading {
 }
 @media (min-width: 768px) {
   header .intro-text {
-    padding-top: 300px;
-    padding-bottom: 200px;
+    padding-top: 100px;
+    padding-bottom: 600px;
   }
   header .intro-text .intro-lead-in {
-    font-family: "Open Sans Light", Arial, Helvetica, sans-serif;
-    font-style: italic;
-    font-size: 40px;
-    line-height: 40px;
-    margin-bottom: 25px;
+    /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
+    font-family: 'Roboto';
+    /*font-family: 'Lato', sans-serif;*/
+    font-weight: 200;
+    /*font-style: ;*/
+    font-size: 23px;
+    line-height: 22px;
+    margin-bottom: 10px;
   }
   header .intro-text .intro-heading {
-    font-family: "Open Sans Bold", Arial, Helvetica, sans-serif;
+    /*font-family: "Open Sans Bold", Arial, Helvetica, sans-serif;*/
+      font-family: 'Roboto Condensed', sans-serif;
     text-transform: uppercase;
-    font-weight: 700;
-    font-size: 75px;
-    line-height: 75px;
-    margin-bottom: 50px;
+    font-weight: 400;
+    font-size: 4em;
+    line-height: 100%;
+    /*margin-bottom: 120px;*/
   }
 }
 section {
   padding: 100px 0;
 }
+
 section h2.section-heading {
   font-size: 40px;
   margin-top: 0;
@@ -314,7 +326,8 @@ section h2.section-heading {
 }
 section h3.section-subheading {
   font-size: 16px;
-  font-family: "Open Sans Light", Arial, Helvetica, sans-serif;
+  /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
+    font-family: 'Roboto Condensed', sans-serif;
   text-transform: none;
   font-style: italic;
   font-weight: 400;
@@ -325,9 +338,82 @@ section h3.section-subheading {
     padding: 150px 0;
   }
 }
+.animation_delay{
+    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+    animation-delay: 2s;
+}
 .service-heading {
   margin: 15px 0;
   text-transform: none;
+}
+.features-heading {
+    margin: 15px 0;
+    text-transform: none;
+}
+.thumbnail {
+    position: absolute;
+
+}
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+.features-row {
+  padding-bottom: 15px;
+}
+.features {
+  border: solid 2px grey;
+}
+.height-row {
+    overflow: hidden; /* cut off the stretched background */
+}
+.height-rows {
+  padding: 0 20px 20px 5px;
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+}
+.height-rows2 {
+  padding: 0 20px 40px 5px;
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+
+}
+.height-rows3 {
+  padding: 0 20px 120px 5px;
+  margin-bottom: 9px;
+    *margin-bottom: 99px;
+
+
+}
+.height-row {
+    padding: 0 20px 40px 5px;
+    margin-bottom: 9px;
+    *margin-bottom: 99px;
+}
+.caption {
+    position: absolute;
+    top: 20%;
+    /*left: 0%;*/
+    /*width: 100%;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+.section-header {
+    padding: 0px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    font-size: 2.0em;
+    /*font-family: "Open Sans Light", Arial, Helvetica, sans-serif;*/
+    font-family: 'Lato', sans-serif;
+    text-transform: none;
+    text-align: center;
+    font-style: normal;
+    color: white;
+    font-weight: 300;
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+.img-workout {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/workouts.png');
 }
 #portfolio .portfolio-item {
   margin: 0 0 15px;
