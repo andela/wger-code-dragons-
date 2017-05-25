@@ -16,9 +16,17 @@
 # along with Workout Manager.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.core import mail
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.cache import cache
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.decorators import permission_required
+from django.contrib import messages
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, api_view
 
 from wger.core.models import (
     UserProfile,
@@ -121,3 +129,47 @@ class WeightUnitViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = WeightUnitSerializer
     ordering_fields = '__all__'
     filter_fields = ('name', )
+
+def member_search(request):
+    '''
+    Searches for users.
+
+    This format is currently used by the user search autocompleter
+    '''
+
+    response = request.GET.get('term', None)
+
+    results = []
+    user_results = []
+    json_response = {}
+    if response:
+        user = User.objects.all().filter(username=response)
+        if len(user) != 0:
+            user = user[0]
+            # import pdb; pdb.set_trace()
+            user_json = {
+                'name': user.username,
+                'data': {
+                    'age': user.userprofile.age,
+                    'height': user.userprofile.height,
+                    'weight': user.userprofile.weight,
+                    'work_intensity': user.userprofile.work_intensity,
+                    'work_hours': user.userprofile.work_hours
+                }
+            }
+            current_user = {
+                'name': request.user.username,
+                'data': {
+                    'age': request.user.userprofile.age,
+                    'height': request.user.userprofile.height,
+                    'weight': request.user.userprofile.weight,
+                    'work_intensity': request.user.userprofile.work_intensity,
+                    'work_hours': request.user.userprofile.work_hours
+                }
+            }
+            user_results.append(current_user)
+            results.append(user_json)
+            json_response['user_main'] = user_results[0]
+            json_response['user'] = results[0]
+
+    return render(request, 'compare.html', json_response)

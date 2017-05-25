@@ -38,6 +38,7 @@ from wger.manager.models import Schedule
 from wger.nutrition.models import NutritionPlan
 from wger.weight.models import WeightEntry
 from wger.weight.helpers import get_last_entries
+from wger.utils.helpers import search_user
 
 
 logger = logging.getLogger(__name__)
@@ -137,7 +138,6 @@ def dashboard(request):
         template_data['nutritional_info'] = plan.get_nutritional_values()
 
     return render(request, 'index.html', template_data)
-
 
 class ContactClassView(TemplateView):
     def get_context_data(self, **kwargs):

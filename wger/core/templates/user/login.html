@@ -9,6 +9,7 @@
 <div class="contact-form">
 {% block content %}
 
+
 <div class="clear"><span></span></div>
 <form class="form_horizontal" action="{% url 'core:user:login' %}{% if next %}?next={{next}}{% endif %}" method="post" name="contact_form">
 {% block header %}

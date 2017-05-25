@@ -65,5 +65,16 @@ target/
 
 # External Libraries
 wger/core/static/bower_components
-!wger/core/static/bower_components/bootstrap/dist/css/bootstrap.min.css
+
+
+
+
 node_modules
+
+#DB
+*.db 
+*.sqlite
+
+#Django Specific Settings
+wger/settings.py 
+
