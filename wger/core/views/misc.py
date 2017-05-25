@@ -139,6 +139,7 @@ def dashboard(request):
 
     return render(request, 'index.html', template_data)
 
+
 class ContactClassView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ContactClassView, self).get_context_data(**kwargs)
