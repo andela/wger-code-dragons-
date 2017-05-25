@@ -231,9 +231,11 @@ def smart_capitalize(input):
             out.append(word)
     return ' '.join(out)
 
+
 def search_user(identifier):
     '''
-    Returns a user by their identifier and return their details such as: exercises, nutrition stuff... 
+    Returns a user by their identifier and return their 
+    details such as: exercises, nutrition stuff
     '''
     user_details = User.objects.filter(email=identifier)
     if len(user_details) == 0:
@@ -241,4 +243,3 @@ def search_user(identifier):
     else:
         user = User.objects.get(email=identifier)
         return user
-
