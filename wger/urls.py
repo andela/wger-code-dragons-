@@ -48,6 +48,7 @@ from django.contrib.auth import views as auth_views
 #
 # REST API
 #
+
 #  /api/v1 - tastypie - deprecated
 v1_api = Api(api_name='v1')
 

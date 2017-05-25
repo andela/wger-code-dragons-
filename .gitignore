@@ -65,6 +65,10 @@ target/
 
 # External Libraries
 wger/core/static/bower_components
+
+
+
+
 node_modules
 
 #DB
@@ -73,3 +77,4 @@ node_modules
 
 #Django Specific Settings
 wger/settings.py 
+

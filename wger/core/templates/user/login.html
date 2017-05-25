@@ -1,53 +1,39 @@
 {% extends "base.html" %}
 {% load i18n staticfiles wger_extras %}
 
-{% block title %}{% trans "Login" %}{% endblock %}
+
+{% block title %}{% trans "Login to your account" %}{% endblock %}
 
 
+<div class="wrap">
+<div class="contact-form">
+{% block content %}
+
+
+<div class="clear"><span></span></div>
+<form class="form_horizontal" action="{% url 'core:user:login' %}{% if next %}?next={{next}}{% endif %}" method="post" name="contact_form">
 {% block header %}
 {% endblock %}
 
-{% block content %}
-<form action="{% url 'core:user:login' %}{% if next %}?next={{next}}{% endif %}"
-      method="post"
-      class="form-horizontal">
-    {% trans 'Login' as submit_text %}
-    {% render_form_fields form submit_text %}
-</form>
-
-<div class="container">
-    
-   <div class="row col-md-offset-2 col-md-5 col-sm-7 col-xs-offset-0 col-xs-11 social-buttons"> 
-   <div class="col-md-4 col-md-offset-0 col-xs-offset-0 col-xs-4">   
-              
-       <a class="btn btn-md btn-social btn-block btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}"><span class="fa fa-facebook"></span><span class="hidden-xs">Sign In</span></a>
-      </div><div class="col-md-4 col-md-offset-0 col-xs-offset-0 col-xs-4">     
-       <a class="btn btn-md btn-social btn-block btn-google" href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}"><span class="fa fa-google"></span><span class="hidden-xs">Sign In</span></a>
-        </div><div class="col-md-4 col-md-offset-0 col-xs-offset-0 col-xs-4"> 
-       <a class="btn btn-md btn-social btn-block btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ request.GET.next }}"><span class="fa fa-twitter"></span><span class="hidden-xs">Sign In</span></a>
-      </div> 
-     </div>
-     
-</div>
-     
-
+            {% trans 'Login' as submit_text %}
+            {% render_form_fields form submit_text %}
+<div class="clear"></div>	
+<div class="forgot">
+			<a href="#">forgot password?</a>
+		</div>
+	</form>
 {% endblock %}
-
 
 {% block sidebar %}
-<h4>{% trans "No account?" %}</h4>
-<p>
-    <a href="{% url 'core:user:registration' %}" class="btn btn-block btn-default">
-        <span class="{% fa_class 'sign-in' %}"></span>
-        {% trans "Register" %}
-    </a>
-</p>
 
-<h4>{% trans "Forgot password?" %}</h4>
-<p>
-    <a href="{% url 'core:user:password_reset' %}" class="btn btn-block btn-default">
-        <span class="{% fa_class 'key' %}"></span>
-        {% trans "Reset password" %}
-    </a>
-</p>
+
+	<h4><a href="{% url 'core:user:registration' %}">Dont have an account? Sign Up Here</a></h4>
+
+    <div class="span"><a href="{% url 'social:begin' 'facebook' %}?next={{ request.GET.next }}"><img src="images/facebook.png" alt=""/><i>Sign In with Facebook</i><div class="clear"></div></a></div>	
+    <div class="span1"><a href="{% url 'social:begin' 'twitter' %}?next={{ request.GET.next }}"><img src="images/twitter.png" alt=""/><i>Sign In with Twitter</i><div class="clear"></div></a></div>
+    <div class="span2"><a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.GET.next }}"><img src="images/gplus.png" alt=""/><i>Sign In with Google+</i><div class="clear"></div></a></div>
+
 {% endblock %}
+
+</div>
+</div>
