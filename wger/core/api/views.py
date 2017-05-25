@@ -130,6 +130,7 @@ class WeightUnitViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = '__all__'
     filter_fields = ('name', )
 
+
 def member_search(request):
     '''
     Searches for users.

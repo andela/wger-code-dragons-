@@ -28,8 +28,6 @@ DATABASES = {
 
 SECRET_KEY = '$zo_hec%jqx2zs_1@100-c2+f4b2=hqu9h66p4ww4n35hv8@!)'
 
-
-
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
