@@ -184,6 +184,10 @@ urlpatterns = [
     url(r'^$',
         misc.index,
         name='index'),
+# fitbit authorisation page
+    url(r'^fitbit$',
+        user.fitbit_authorisation,
+        name='fitbit'),
 
     # The dashboard
     url(r'^dashboard$',
