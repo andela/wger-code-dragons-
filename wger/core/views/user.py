@@ -696,6 +696,3 @@ class InactiveUserListView(LoginRequiredMixin, PermissionRequiredMixin, ListView
                                           _('Gym')],
                                  'users': context['object_list']['members']}
         return context
-
-
-
