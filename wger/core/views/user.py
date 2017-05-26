@@ -207,7 +207,7 @@ def fitbit_authorisation(request, code=None):
 
     # link to page that makes user authorize wger to access their fitbit
     template_data['fitbit_auth_link'] = \
-        fitbit_client.authorize_token_url(redirect_uri=
+        fitbit_client.authorize_token_url(redirect_uri=\
                                           'https://wger-code-dragons.herokuapp.com/en/fitbit',
                                           prompt='consent')[0]
     return render(request, 'user/fitbit.html', template_data)
