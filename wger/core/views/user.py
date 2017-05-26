@@ -70,7 +70,8 @@ from wger.exercises.models import (
 )
 
 from fitbit import FitbitOauth2Client, Fitbit
-import requests, datetime
+import requests
+import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -125,15 +126,18 @@ def fitbit_authorisation(request, code=None):
             user_id = response['user_id']
             headers['Authorization'] = 'Bearer ' + token
 
-            response_weight = requests.get('https://api.fitbit.com/1/user/'+ user_id +'/profile.json',
+            response_weight = requests.get('https://api.fitbit.com/1/user/'
+                                           + user_id + '/profile.json',
                                            headers=headers)
             weight = response_weight.json()['user']['weight']
 
-            response_nutrition = requests.get('https://api.fitbit.com/1/user/'+ user_id +'/foods/log/date/2017-05-11.json',
-                headers=headers)
+            response_nutrition = requests.get('https://api.fitbit.com/1/user/'
+                                              + user_id + '/foods/log/date/2017-05-11.json',
+                                              headers=headers)
 
-            response_activity = requests.get('https://api.fitbit.com/1/user/'+ user_id +'/activities/date/2017-05-11.json',
-                headers=headers)
+            response_activity = requests.get('https://api.fitbit.com/1/user/'
+                                             + user_id + '/activities/date/2017-05-11.json',
+                                             headers=headers)
 
             # add weight and activity to db
             try:
